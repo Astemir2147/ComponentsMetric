@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ui.fragment.LoginFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_login_text_layout"
+        style="@style/LoginTextInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:hint="@string/login"
+        app:errorEnabled="true"
+        app:hintEnabled="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="@dimen/centered_elements_vertical_bias">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_login_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textWebEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/login_password_text_layout"
+        style="@style/LoginTextInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:hint="@string/password"
+        app:hintEnabled="true"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_login_text_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_password_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/login_button"
+        style="@style/LoginButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="@string/login"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_password_text_layout" />
+
+    <Button
+        android:id="@+id/to_account_creation_button"
+        style="@style/LoginButtonStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="@string/create_account"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_button" />
+
+    <TextView
+        android:id="@+id/auth_as_guest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/guest"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/reg_link_text_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/to_account_creation_button" />
+
+    <TextView
+        android:id="@+id/reteive_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="@string/restore_password"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/reg_link_text_size"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/auth_as_guest" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

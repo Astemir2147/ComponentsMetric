@@ -19,8 +19,8 @@ class ComponentsViewModel(
     private val _postsLoaded = MutableLiveData<List<ComponentListItem>>()
     val commentsLoaded: LiveData<List<ComponentListItem>> get() = _postsLoaded
 
-    fun init() {
-        Log.d("my_tag","ComponentsViewModel")
+    suspend fun init() {
+        Log.d("my_tag", "ComponentsViewModel")
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val allComponents = getAllProductUseCase.getAllProduct().map { it.productToComponentListItem() }

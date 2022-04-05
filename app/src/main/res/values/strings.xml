@@ -1,6 +1,21 @@
 <resources>
     <string name="app_name">ComponentsMetric</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="back4app_server_url">val</string>
+
+    <!-- Feature Login -->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="guest">Guest</string>
+    <string name="restore_password">Restore password</string>
+    <string name="back_to_auth">Back to auth screen</string>
+    <string name="create_account">Create account</string>
+    <string name="arrow_back_description">This is back button</string>
+
+    <string name="is_fullscreen">isFullscreen</string>
+    <string name="calendar">Calendar</string>
+    <string name="profile">Profile</string>
+    <string name="components">Components</string>
+    <string name="home">Home</string>
 </resources>

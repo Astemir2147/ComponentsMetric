@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="LoginTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/black</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="hintTextColor">@color/black</item>
+    </style>
+
+    <style name="LoginButtonStyle">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:backgroundTint">@color/blue</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+</resources>

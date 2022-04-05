@@ -11,7 +11,6 @@ class DiApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
         startKoin {
             //androidLogger(Level.DEBUG)
             androidContext(this@DiApp)
@@ -20,5 +19,4 @@ class DiApp : Application() {
             modules(dataModule, domain, presentation)
         }
     }
-
 }

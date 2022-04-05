@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+
+    <item name="centered_elements_vertical_bias" type="dimen">0.25</item>
+    <item name="button_text_size" type="dimen">18sp</item>
+    <item name="reg_link_text_size" type="dimen">16sp</item>
+    <item name="check_email_test_size" type="dimen">24sp</item>
+
+</resources>

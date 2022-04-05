@@ -20,3 +20,17 @@ X
 (gradle/wrapper/gradle-wrapper.properties,f\b\fbe448ebfc3eb2d4e308f6b8b043666f5b57235e
 A
 gradle.properties,2\a\2afbb999f001938c88fa43fc2ef52abf0f8213e4
+~
+Napp/src/main/java/com/example/componentsmetric/domain/interactor/Interactor.kt,c\9\c95f58cfe0605e617092d7664ab06f322107557d
+…
+Uapp/src/main/java/com/example/componentsmetric/domain/useCase/GetAllProductUseCase.kt,2\a\2af05b209f9a7445b6be0cc226ed853ede8a0c7d
+t
+Dapp/src/main/java/com/example/componentsmetric/ui/mappers/Mappers.kt,8\2\82bdde6ea31a67e95ccdfa893aaf303d86a16ec1
+z
+Japp/src/main/java/com/example/componentsmetric/data/converter/Converter.kt,b\2\b20acb16b88c8e0270f900b81987a0a9f663b228
+˜
+happ/src/main/java/com/example/componentsmetric/domain/useCase/implementation/GetAllProductUseCaseImpl.kt,9\5\95c19d95f211a49c689a6878619a74f9b51aa630
+~
+Napp/src/main/java/com/example/componentsmetric/domain/repository/Repository.kt,8\2\82bdb4ac1ad8c4199fcc102a10d9af04686fb2a4
+z
+Japp/src/main/java/com/example/componentsmetric/ui/dto/ComponentListItem.kt,9\a\9a52b41d10b2b18f6e6c08933eca1b18bcd16564
