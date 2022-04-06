@@ -7,11 +7,11 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.componentsmetric.ui.fragment.LoginFragment"
+        android:name="com.example.feature_login.presentation.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
-            android:id="@+id/action_loginFragment_to_homePageFragment"
+            android:id="@+id/auth_to_components"
             app:destination="@id/navigation_home" />
     </fragment>
     <fragment

@@ -1,13 +1,13 @@
-package com.example.componentsmetric.ui.fragment
+package com.example.feature_login.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.feature_login.R
+import com.example.feature_login.databinding.FragmentLoginBinding
 import androidx.navigation.fragment.findNavController
-import com.example.componentsmetric.R
-import com.example.componentsmetric.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
     private var loginBinding: FragmentLoginBinding? = null
@@ -20,8 +20,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.loginButton.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_homePageFragment)
-        }
+        binding.authAsGuest.setOnClickListener { goToComponents() }
+    }
+
+    private fun goToComponents() {
+        findNavController().navigate(R.id.auth_to_components)
     }
 }

@@ -10,3 +10,4 @@ rootProject.name = "ComponentsMetric"
 include ':app'
 
 
+include ':feature_login'
