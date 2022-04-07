@@ -12,17 +12,18 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/auth_to_components"
-            app:destination="@id/navigation_home" />
+            app:destination="@id/navigation_insert_data" />
     </fragment>
+
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.componentsmetric.ui.fragment.HomePageFragment"
-        android:label="HomePageFragment"
-        tools:layout="@layout/fragment_home_page" />
+        android:id="@+id/navigation_insert_data"
+        android:name="com.example.feature_insert_data.presentation.InsertDataFragment"
+        android:label="Insert Data"
+        tools:layout="@layout/fragment_insert_data" />
     <fragment
         android:id="@+id/navigation_components"
-        android:name="com.example.componentsmetric.ui.fragment.AllComponentsFragment"
-        android:label="AllComponentsFragment"
-        tools:layout="@layout/fragment_all_components" />
+        android:name="com.example.feature_components.presentation.ComponentsFragment"
+        android:label="Components"
+        tools:layout="@layout/fragment_components" />
 
 </navigation>

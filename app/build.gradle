@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'com.google.gms.google-services'
-    //
 }
 
 android {
@@ -38,6 +37,8 @@ android {
 
 dependencies {
     implementation project(path: ":feature_login")
+    implementation project(path: ":feature_insert_data")
+    implementation project(path: ":feature_components")
 
     def nav_version = "2.4.1"
     def fragment_version = "1.4.1"

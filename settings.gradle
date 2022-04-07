@@ -11,3 +11,5 @@ include ':app'
 
 
 include ':feature_login'
+include ':feature_insert_data'
+include ':feature_components'

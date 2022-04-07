@@ -32,5 +32,13 @@ Japp/src/main/java/com/example/componentsmetric/data/converter/Converter.kt,b\2
 happ/src/main/java/com/example/componentsmetric/domain/useCase/implementation/GetAllProductUseCaseImpl.kt,9\5\95c19d95f211a49c689a6878619a74f9b51aa630
 ~
 Napp/src/main/java/com/example/componentsmetric/domain/repository/Repository.kt,8\2\82bdb4ac1ad8c4199fcc102a10d9af04686fb2a4
-z
-Japp/src/main/java/com/example/componentsmetric/ui/dto/ComponentListItem.kt,9\a\9a52b41d10b2b18f6e6c08933eca1b18bcd16564
+H
+feature_login/.gitignore,4\0\40c62eaba2fac54beaa3b2e31c5abcb2f49ac8b3
+‡
+Wfeature_login/src/androidTest/java/com/example/feature_login/ExampleInstrumentedTest.kt,9\c\9c0359ec5a53c41e429e27e673b7678873bec681
+x
+Hfeature_login/src/test/java/com/example/feature_login/ExampleUnitTest.kt,c\3\c33561aa201f0381abf6113219ef18c8af44392b
+P
+ feature_login/proguard-rules.pro,9\8\984b41f95955ebe98dad8a7004ae21fd513b5e52
+P
+ feature_login/consumer-rules.pro,9\3\9357f8f31ca1dd6914847446a7cab652c88f0737
