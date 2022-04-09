@@ -1,8 +1,8 @@
 package com.example.componentsmetric.data.firestore
 
-import com.google.android.gms.tasks.Task
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.QuerySnapshot
+// import com.google.android.gms.tasks.Task
+// import com.google.firebase.firestore.DocumentSnapshot
+// import com.google.firebase.firestore.QuerySnapshot
 
 interface FirestoreDataStore {
 
@@ -11,6 +11,6 @@ interface FirestoreDataStore {
      *
      * @return [Task] - результат асинхронного запроса получения документа
      */
-    fun getDocumentFirestore(): Task<QuerySnapshot>
+    // fun getDocumentFirestore(): Task<QuerySnapshot>
 
 }
