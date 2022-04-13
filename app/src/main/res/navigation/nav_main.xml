@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/auth_to_components"
-            app:destination="@id/navigation_insert_data" />
+            app:destination="@id/navigation_insert_data"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left" />
     </fragment>
 
     <fragment

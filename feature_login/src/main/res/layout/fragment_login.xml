@@ -16,11 +16,13 @@
         android:hint="@string/login"
         app:errorEnabled="true"
         app:hintEnabled="true"
+        app:endIconMode="clear_text"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.218"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="@dimen/centered_elements_vertical_bias">
+        app:layout_constraintVertical_bias="0.3">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/login_login_edit_text"
@@ -35,10 +37,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:hint="@string/password"
         app:hintEnabled="true"
+        app:layout_constraintHorizontal_bias="0.218"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_login_text_layout">
@@ -50,28 +52,30 @@
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
+
     <Button
         android:id="@+id/login_button"
-        style="@style/LoginButtonStyle"
+        style="@style/LoginButtonStyle2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginStart="@dimen/button_login_horizontal_margin"
+        android:layout_marginEnd="@dimen/button_login_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:background="@drawable/oval_button"
         android:text="@string/login"
+        app:layout_constraintHorizontal_bias="0.218"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_password_text_layout" />
 
-    <Button
-        android:id="@+id/to_account_creation_button"
-        style="@style/LoginButtonStyle"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/reteive_password"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:text="@string/create_account"
+        android:layout_marginTop="8dp"
+        android:text="@string/restore_password"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/reg_link_text_size"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_button" />
@@ -80,24 +84,26 @@
         android:id="@+id/auth_as_guest"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginTop="20dp"
         android:text="@string/guest"
         android:textColor="@color/gray"
         android:textSize="@dimen/reg_link_text_size"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/to_account_creation_button" />
+        app:layout_constraintTop_toBottomOf="@+id/reteive_password" />
 
     <TextView
-        android:id="@+id/reteive_password"
+        android:id="@+id/to_account_creation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:text="@string/restore_password"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/reg_link_text_size"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/auth_as_guest" />
 
+        android:layout_marginBottom="24dp"
+        android:text="@string/create_account"
+        android:textColor="@color/black"
+        android:textSize="@dimen/reg_link_text_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

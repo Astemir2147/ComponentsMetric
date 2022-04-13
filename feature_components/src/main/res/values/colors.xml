@@ -20,9 +20,11 @@
     <color name="primary">#40A4C4</color>
     <color name="light_gray">#fff5f5f5</color>
     <color name="gray">#858585</color>
-
     <color name="colorSurface">#fafafa</color>
     <color name="colorOnSurface">#212121</color>
     <color name="colorSecondary">#bdbdbd</color>
     <color name="colorSecondaryVariant">#efefef</color>
+
+    <color name="light_green">#67AD2C</color>
+
 </resources>
