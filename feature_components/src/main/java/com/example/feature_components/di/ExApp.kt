@@ -14,6 +14,7 @@ class ExApp : Application() {
         super.onCreate()
         startKoin {
             androidContext(this@ExApp)
+            //component module
             modules(dataModule, domain, presentation)
         }
     }

@@ -1,14 +1,18 @@
 package com.example.feature_components.presentation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.feature_components.R
 import com.example.feature_components.data.model.Component
 import com.example.feature_components.databinding.FragmentComponentsBinding
 import com.example.feature_components.presentation.adapter.ComponentAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ComponentsFragment : Fragment(R.layout.fragment_components) {
@@ -25,7 +29,16 @@ class ComponentsFragment : Fragment(R.layout.fragment_components) {
     }
 
     private fun setComponents(list: List<Component>) {
-        componentsAdapter = ComponentAdapter(list)
-        binding.rvPosts.adapter = componentsAdapter
+
+        CoroutineScope(Dispatchers.Main).launch {
+            delay(3000)
+            if (list.isNotEmpty()) {
+                binding.shimmerViewContainer.stopShimmer()
+                binding.shimmerViewContainer.visibility = View.GONE
+                componentsAdapter = ComponentAdapter(list)
+                binding.rvPosts.adapter = componentsAdapter
+            }
+        }
+
     }
 }
