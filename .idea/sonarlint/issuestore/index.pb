@@ -3,8 +3,6 @@
 app/.gitignore,5\1\51e1c5d383dfaa35e0e7e5873a0a99355a86880f
 €
 Papp/src/androidTest/java/com/example/componentsmetric/ExampleInstrumentedTest.kt,e\e\ee66e2e70bb5f05bb3d876ea62352f5a5d6f5f0b
-F
-app/proguard-rules.pro,9\e\9e08934d811afe28fbc77aaa3c0d747b94348db9
 q
 Aapp/src/test/java/com/example/componentsmetric/ExampleUnitTest.kt,6\e\6eaace3b4b1825cee76da77f4fc63b1b68e0005d
 :
@@ -70,8 +68,6 @@ Ecore/src/androidTest/java/com/example/core/ExampleInstrumentedTest.kt,f\f\ff72
 Wapp/src/main/java/com/example/componentsmetric/data/firestore/FirestoreDataStoreImpl.kt,f\a\fa89c1e46e434ec35a4e909368df9d5cbaaf265c
 G
 core/consumer-rules.pro,9\d\9df576c5d0a011f72d84e78ce1617bc4e57720d5
-@
-app/build.gradle,f\4\f4a01d6a4fcb971362ec00a83903fd3902f52164
 f
 6core/src/test/java/com/example/core/ExampleUnitTest.kt,e\9\e98238f79ba09dfae58cd096807cc9539e9c5093
 G
@@ -82,12 +78,8 @@ G
 [feature_components/src/main/java/com/example/feature_components/data/extension/Extension.kt,3\1\31c10b2a9756e068ad14d995b94f176dbd1295bd
 ‡
 Wfeature_components/src/main/java/com/example/feature_components/data/model/Component.kt,7\1\715c09b57aa702ab526bee5c18ce27d04354d642
-P
- feature_insert_data/build.gradle,1\1\11bf23e1220dc22843f46e8ab8e229c95d70198f
 Q
 !core/src/main/AndroidManifest.xml,a\e\ae00e14a93cb05cbe86f462a3bad74d51f6b1afc
-A
-core/build.gradle,9\1\918ca359602392354123b7d3b63264baf7ea9dde
 <
 build.gradle,f\0\f07866736216be0ee2aba49e392191aeae700a35
 ™
@@ -108,11 +100,31 @@ afeature_components/src/main/java/com/example/feature_components/data/repository
 cfeature_components/src/main/java/com/example/feature_components/domain/interactor/InteractorImpl.kt,f\6\f66f4e04604085c7abfae891bcba5f6d8fce4e12
 
 _feature_components/src/main/java/com/example/feature_components/domain/interactor/Interactor.kt,8\4\84d5374633fe8897217bb4b902a197c025999f78
-q
-Aapp/src/main/java/com/example/componentsmetric/ui/MainActivity.kt,9\b\9be697ec17a1b41dd20ed02337dc1d998d815e7f
 z
 Jfeature_components/src/main/java/com/example/feature_components/di/data.kt,e\7\e778a0403bc00cd0ea463dc4e3f1d3b2932a6771
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
 ‚
 Rfeature_components/src/main/java/com/example/feature_components/di/presentation.kt,d\2\d29a56b44de0159ada4b8bb5f99c20e73d8c92bb
+|
+Lfeature_components/src/main/java/com/example/feature_components/di/domain.kt,1\4\1415160caa759637c4c7acfe14176997e2c35667
+“
+cfeature_components/src/main/java/com/example/feature_components/presentation/ComponentsViewModel.kt,5\a\5a14511e136f79d24528f2ee15831cfa14e7642b
+{
+Kfeature_components/src/main/java/com/example/feature_components/di/ExApp.kt,b\4\b45e7d0ea8e21c770d03609c178d26974c290fac
+r
+Bfeature_login/src/main/java/com/example/feature_login/di/module.kt,8\7\870bddc6c7b254267b5c563d4075a15b32725d99
+’
+bfeature_components/src/main/java/com/example/feature_components/presentation/ComponentsFragment.kt,4\f\4f20c92a0c63fdce7f8a1215181a82403dd9492c
+€
+Pfeature_login/src/main/java/com/example/feature_login/data/AuthDataSourceImpl.kt,0\6\06a2f371ff608ef41f604c2c08d3edfdd4043863
+Š
+Zfeature_login/src/main/java/com/example/feature_login/presentation/validation/Validator.kt,7\2\72555181be58a20d21d783b427e157118e785e2d
+€
+Pfeature_login/src/main/java/com/example/feature_login/data/model/AuthDateUser.kt,2\3\234840f85e64576022eedbeb79f9a6fcd2cad2f2
+v
+Ffeature_login/src/main/java/com/example/feature_login/di/dataModule.kt,6\c\6c576b0b92de9fe4394dc52bc992601124c51686
+|
+Lfeature_login/src/main/java/com/example/feature_login/data/AuthDataSource.kt,7\9\7914ba5a352efc74998d62686fa33c78aeb694a3
+t
+Dfeature_login/src/main/java/com/example/feature_login/data/Cookie.kt,b\0\b00f442c698573c3f1967c7dd6177bc4e33b9e41
