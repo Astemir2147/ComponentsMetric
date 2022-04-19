@@ -1,14 +1,15 @@
 package com.example.feature_components.presentation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.feature_components.domain.interactor.Interactor
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.feature_components.data.model.Component
-import kotlinx.coroutines.Dispatchers
+import androidx.lifecycle.MutableLiveData
+import com.example.feature_components.data.DatabaseConstStatus
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.Dispatchers
+import com.example.feature_components.data.model.Component
+import com.example.feature_components.domain.interactor.Interactor
 
 /**
  * Вьюмодель для получения списка контрактов
@@ -20,30 +21,62 @@ import kotlinx.coroutines.withContext
 class ComponentsViewModel(
     private val componentsInteractor: Interactor
 ) : ViewModel() {
-    private var contractsListMutableLiveDataFromDb = MutableLiveData<List<Component>>()
-    val contractListFromDb: LiveData<List<Component>>
-        get() = contractsListMutableLiveDataFromDb
-    val list: List<Component> = emptyList()
+
+    private var acceptedContractsListMutableLiveDataFromDb = MutableLiveData<List<Component>>()
+    val acceptedContractListFromDb: LiveData<List<Component>>
+        get() = acceptedContractsListMutableLiveDataFromDb
+
+    private var installedContractsListMutableLiveDataFromDb = MutableLiveData<List<Component>>()
+    val installedListFromDb: LiveData<List<Component>>
+        get() = installedContractsListMutableLiveDataFromDb
+
+    private var discardedContractsListMutableLiveDataFromDb = MutableLiveData<List<Component>>()
+    val discardedListFromDb: LiveData<List<Component>>
+        get() = discardedContractsListMutableLiveDataFromDb
 
     fun init() {
         setContractsToDb()
-        getContractsFromDb()
     }
 
-    private fun setContractsToDb() {
+     fun setContractsToDb() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                componentsInteractor.setAllContractToDb(list)
+                componentsInteractor.setAllContractToDb()
             }
         }
     }
 
-    private fun getContractsFromDb() {
+    fun getAcceptedContractsFromDb() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val contracts = componentsInteractor.getComponentsFromDb()
+                val contracts = componentsInteractor
+                    .getComponentsFromDb(DatabaseConstStatus.READY_FOR_USE)
                 withContext(Dispatchers.Main) {
-                    contractsListMutableLiveDataFromDb.postValue(contracts)
+                    acceptedContractsListMutableLiveDataFromDb.postValue(contracts)
+                }
+            }
+        }
+    }
+
+     fun getInstalledComponentsFromDb() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val contracts = componentsInteractor
+                    .getComponentsForStatus(DatabaseConstStatus.INSTALLED)
+                withContext(Dispatchers.Main) {
+                    installedContractsListMutableLiveDataFromDb.postValue(contracts)
+                }
+            }
+        }
+    }
+
+     fun getDiscardedComponentsFromDb() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val contracts = componentsInteractor
+                    .getComponentsForStatus(DatabaseConstStatus.DISCARDED)
+                withContext(Dispatchers.Main) {
+                    discardedContractsListMutableLiveDataFromDb.postValue(contracts)
                 }
             }
         }

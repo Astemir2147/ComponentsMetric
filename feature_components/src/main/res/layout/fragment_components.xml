@@ -5,6 +5,43 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:id="@+id/filters_bar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="@dimen/paddingXS"
+        android:orientation="horizontal"
+        android:weightSum="3"
+        app:layout_constraintTop_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/filter_accept"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_margin="@dimen/paddingSM"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/received" />
+
+        <TextView
+            android:id="@+id/filter_installed"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_margin="@dimen/paddingSM"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/installed" />
+
+        <TextView
+            android:id="@+id/filter_discarded"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_margin="@dimen/paddingSM"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/discarded" />
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPosts"
         android:layout_width="match_parent"

@@ -6,11 +6,15 @@ import com.example.feature_components.domain.Repository
 class InteractorImpl(
     private val componentRepository: Repository
 ) : Interactor {
-    override suspend fun getComponentsFromDb(): List<Component> {
-        return componentRepository.getAllComponentFromDb()
+    override suspend fun getComponentsForStatus(status: String): List<Component>{
+        return componentRepository.getComponentsForStatus(status)
     }
 
-    override suspend fun setAllContractToDb(components: List<Component>) {
-        componentRepository.setAllComponentToDb(components)
+    override suspend fun getComponentsFromDb(status: String): List<Component> {
+        return componentRepository.getAllComponentFromDb(status)
+    }
+
+    override suspend fun setAllContractToDb() {
+        componentRepository.setAllComponentToDb()
     }
 }

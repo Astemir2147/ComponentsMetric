@@ -8,12 +8,12 @@ import com.example.feature_components.data.model.Component
  * @author Zashaev Astemir on 2022-04-09
  */
 interface Repository {
-    /** Возвращает контракты пиз бд */
-    suspend fun getAllComponentFromDb(): List<Component>
+    /** Возвращает контракты из бд по статусу [status] */
+    suspend fun getComponentsForStatus(status: String): List<Component>
 
-    /** Занести данные в бд
-     * TODO(изменить параметр [components] на dto сети в дальнейшем)
-     * */
-    suspend fun setAllComponentToDb(components: List<Component>)
+    /** Возвращает контракты из бд */
+    suspend fun getAllComponentFromDb(status: String): List<Component>
 
+    /** Занести данные в бд */
+    suspend fun setAllComponentToDb()
 }

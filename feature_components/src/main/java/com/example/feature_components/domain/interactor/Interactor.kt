@@ -8,11 +8,13 @@ import com.example.feature_components.data.model.Component
  * @author Zashaev Astemir on 2022-04-09
  */
 interface Interactor {
-    /** Получение всех контрактов из БД */
-    suspend fun getComponentsFromDb(): List<Component>
 
-    /** Внесение [components] в БД
-     * TODO(изменить параметр [components] на dto сети в дальнейшем))
-     * */
-    suspend fun setAllContractToDb(components: List<Component>)
+    /** Получение всех контрактов из БД */
+    suspend fun getComponentsForStatus(status: String): List<Component>
+
+    /** Получение всех контрактов из БД с определенным статусом [status] */
+    suspend fun getComponentsFromDb(status: String): List<Component>
+
+    /** Внесение данных в БД */
+    suspend fun setAllContractToDb()
 }

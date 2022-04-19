@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.example.core.database.DatabaseConst
 import com.example.core.database.entity.ComponentsEntity
 
 /**
@@ -22,4 +23,7 @@ abstract class ComponentsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun setAllComponents(contract: List<ComponentsEntity>)
 
+    /** Возвращает все установленные комплектующие */
+    @Query("SELECT * FROM components WHERE ${DatabaseConst.STATUS_OF_COMPONENT} = :status")
+    abstract fun getComponentsForStatus(status: String): List<ComponentsEntity>
 }

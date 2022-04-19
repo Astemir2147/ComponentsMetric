@@ -9,10 +9,6 @@ import com.example.feature_components.R
 import com.example.feature_components.data.model.Component
 import com.example.feature_components.databinding.FragmentComponentsBinding
 import com.example.feature_components.presentation.adapter.ComponentAdapter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ComponentsFragment : Fragment(R.layout.fragment_components) {
@@ -24,21 +20,38 @@ class ComponentsFragment : Fragment(R.layout.fragment_components) {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         componentsBinding = FragmentComponentsBinding.inflate(inflater, container, false)
         componentsViewModel.init()
-        componentsViewModel.contractListFromDb.observe(viewLifecycleOwner, ::setComponents)
+        setFiltersClickListener()
+        setAcceptedComponents()
         return binding.root
     }
 
     private fun setComponents(list: List<Component>) {
-
-        CoroutineScope(Dispatchers.Main).launch {
-            delay(3000)
-            if (list.isNotEmpty()) {
-                binding.shimmerViewContainer.stopShimmer()
-                binding.shimmerViewContainer.visibility = View.GONE
-                componentsAdapter = ComponentAdapter(list)
-                binding.rvPosts.adapter = componentsAdapter
-            }
+        if (list.isNotEmpty()) {
+            binding.shimmerViewContainer.stopShimmer()
+            binding.shimmerViewContainer.visibility = View.GONE
+            componentsAdapter = ComponentAdapter(list)
+            binding.rvPosts.adapter = componentsAdapter
         }
+    }
 
+    private fun setFiltersClickListener() {
+        binding.filterInstalled.setOnClickListener { setInstalledComponents() }
+        binding.filterAccept.setOnClickListener { setAcceptedComponents() }
+        binding.filterDiscarded.setOnClickListener { setDiscardedComponents() }
+    }
+
+    private fun setAcceptedComponents() {
+        componentsViewModel.getAcceptedContractsFromDb()
+        componentsViewModel.acceptedContractListFromDb.observe(viewLifecycleOwner, ::setComponents)
+    }
+
+    private fun setInstalledComponents() {
+        componentsViewModel.getInstalledComponentsFromDb()
+        componentsViewModel.installedListFromDb.observe(viewLifecycleOwner, ::setComponents)
+    }
+
+    private fun setDiscardedComponents() {
+        componentsViewModel.getDiscardedComponentsFromDb()
+        componentsViewModel.discardedListFromDb.observe(viewLifecycleOwner, ::setComponents)
     }
 }
