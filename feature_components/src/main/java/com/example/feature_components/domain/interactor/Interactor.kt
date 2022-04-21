@@ -17,4 +17,7 @@ interface Interactor {
 
     /** Внесение данных в БД */
     suspend fun setAllContractToDb()
+
+    /** Поиск компонента по ключевому слову [query]*/
+    suspend fun searchComponent(query: String): List<Component>
 }

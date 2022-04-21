@@ -16,4 +16,7 @@ interface Repository {
 
     /** Занести данные в бд */
     suspend fun setAllComponentToDb()
+
+    /** Поиск компонента по ключевому слову [query]*/
+    suspend fun searchComponent(query: String): List<Component>
 }

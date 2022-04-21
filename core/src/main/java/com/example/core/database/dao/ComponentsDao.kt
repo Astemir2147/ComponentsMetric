@@ -26,4 +26,7 @@ abstract class ComponentsDao {
     /** Возвращает все установленные комплектующие */
     @Query("SELECT * FROM components WHERE ${DatabaseConst.STATUS_OF_COMPONENT} = :status")
     abstract fun getComponentsForStatus(status: String): List<ComponentsEntity>
+
+    @Query("SELECT * FROM components WHERE components_name LIKE :query ")
+    abstract fun searchComponent(query: String): List<ComponentsEntity>
 }

@@ -4,7 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="@dimen/paddingXS"
+        >
 
+    </androidx.appcompat.widget.SearchView>
     <LinearLayout
         android:id="@+id/filters_bar"
         android:layout_width="match_parent"

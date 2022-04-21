@@ -17,4 +17,8 @@ class InteractorImpl(
     override suspend fun setAllContractToDb() {
         componentRepository.setAllComponentToDb()
     }
+
+    override suspend fun searchComponent(query: String): List<Component>{
+        return componentRepository.searchComponent(query)
+    }
 }

@@ -10,6 +10,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.Dispatchers
 import com.example.feature_components.data.model.Component
 import com.example.feature_components.domain.interactor.Interactor
+import kotlin.contracts.contract
 
 /**
  * Вьюмодель для получения списка контрактов
@@ -34,11 +35,28 @@ class ComponentsViewModel(
     val discardedListFromDb: LiveData<List<Component>>
         get() = discardedContractsListMutableLiveDataFromDb
 
+    private val searchedContractList = MutableLiveData<List<Component>>()
+    val searchContrac: LiveData<List<Component>>
+        get() = searchedContractList
+
     fun init() {
         setContractsToDb()
     }
 
-     fun setContractsToDb() {
+    fun searchComponent(query: String):LiveData<List<Component>> {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val contracts = componentsInteractor.searchComponent(query)
+
+                withContext(Dispatchers.Main) {
+                    searchedContractList.value = contracts
+                }
+            }
+        }
+        return searchContrac
+    }
+
+    fun setContractsToDb() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 componentsInteractor.setAllContractToDb()
@@ -58,7 +76,7 @@ class ComponentsViewModel(
         }
     }
 
-     fun getInstalledComponentsFromDb() {
+    fun getInstalledComponentsFromDb() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val contracts = componentsInteractor
@@ -70,7 +88,7 @@ class ComponentsViewModel(
         }
     }
 
-     fun getDiscardedComponentsFromDb() {
+    fun getDiscardedComponentsFromDb() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val contracts = componentsInteractor

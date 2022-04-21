@@ -1,5 +1,6 @@
 package com.example.feature_components.data.repository
 
+import androidx.lifecycle.LiveData
 import com.example.core.database.dao.ComponentsDao
 import com.example.core.database.entity.ComponentsEntity
 import com.example.feature_components.data.extension.componentToComponentEntity
@@ -8,6 +9,10 @@ import com.example.feature_components.data.model.Component
 import com.example.feature_components.domain.Repository
 
 class RepositoryImpl(private val dao: ComponentsDao) : Repository {
+
+    override suspend fun searchComponent(query: String): List<Component> {
+       return dao.searchComponent(query).map { it.componentsEntityToComponents() }
+    }
 
     override suspend fun getComponentsForStatus(status: String): List<Component> {
         return dao.getComponentsForStatus(status).map { it.componentsEntityToComponents() }
