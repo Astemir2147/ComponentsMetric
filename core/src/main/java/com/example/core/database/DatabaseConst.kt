@@ -13,5 +13,6 @@ object DatabaseConst {
     const val COMPONENT_NAME = "components_name"
     const val COUNT_OF_ITEM = "count_of_item"
     const val DATE_OF_ACCEPT = "date_of_accept"
+    const val STATUS_OF_COMPONENT = "status_of_component"
 
 }

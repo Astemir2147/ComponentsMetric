@@ -6,4 +6,5 @@ data class Component(
     val personWhitchAccept: String,
     val countOfItem: String,
     val dateOfAccept: String,
+    val statusOfComponent: String
 )

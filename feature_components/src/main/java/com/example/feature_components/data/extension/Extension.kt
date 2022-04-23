@@ -11,9 +11,9 @@ import com.example.feature_components.data.model.Component
 
 /** Данный из бд в модель для слоя presentation */
 fun ComponentsEntity.componentsEntityToComponents() = Component(
-    contractId, componentName, accepted, countOfItem, dateOfAccept
+    contractId, componentName, accepted, countOfItem, dateOfAccept, statusOfComponent
 )
 
 /** Данный из presentation в модель для бд */
 fun Component.componentToComponentEntity() =
-    ComponentsEntity(contractId, componentName, personWhitchAccept, countOfItem, dateOfAccept)
+    ComponentsEntity(contractId, componentName, personWhitchAccept, countOfItem, dateOfAccept, statusOfComponent)

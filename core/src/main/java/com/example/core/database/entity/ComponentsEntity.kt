@@ -9,6 +9,7 @@ import com.example.core.database.DatabaseConst.COMPONENT_NAME
 import com.example.core.database.DatabaseConst.COUNT_OF_ITEM
 import com.example.core.database.DatabaseConst.DATE_OF_ACCEPT
 import com.example.core.database.DatabaseConst.ID
+import com.example.core.database.DatabaseConst.STATUS_OF_COMPONENT
 
 /**
  * Entity компонентов
@@ -33,4 +34,7 @@ data class ComponentsEntity (
 
     @ColumnInfo(name = DATE_OF_ACCEPT)
     val dateOfAccept: String,
+
+    @ColumnInfo(name = STATUS_OF_COMPONENT)
+    val statusOfComponent:String
 )
