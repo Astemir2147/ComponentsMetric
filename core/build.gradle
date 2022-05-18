@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -43,7 +44,7 @@ dependencies {
 
     //Room
     api "androidx.room:room-runtime:$room_version"
-    //api "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     //Koin
     api "io.insert-koin:koin-android:3.1.5"
@@ -55,7 +56,7 @@ dependencies {
     api "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycle}"
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycle}"
     api "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycle}"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1-native-mt'
 
     //navigation ui
     api "androidx.navigation:navigation-fragment-ktx:$nav_version"

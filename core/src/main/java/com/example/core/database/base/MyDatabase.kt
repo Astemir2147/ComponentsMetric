@@ -1,9 +1,10 @@
-package com.example.feature_components.data
+package com.example.core.database.base
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.core.database.dao.ComponentsDao
 import com.example.core.database.entity.ComponentsEntity
 
