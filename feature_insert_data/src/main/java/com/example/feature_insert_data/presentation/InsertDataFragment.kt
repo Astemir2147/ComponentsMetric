@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.example.feature_insert_data.R
-import com.example.feature_insert_data.data.models.Component
 import com.example.feature_insert_data.databinding.FragmentInsertDataBinding
 import com.example.feature_insert_data.di.insertInject
 import com.google.android.material.snackbar.Snackbar
@@ -17,6 +16,10 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
 class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
+
+    companion object {
+        const val DEBUG_TAG = "Insert debug"
+    }
 
     private var homePageBinding: FragmentInsertDataBinding? = null
     private val binding get() = homePageBinding!!
@@ -59,18 +62,17 @@ class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
                     binding.modelAutoTv.text.toString()
                 )
 
-                insertDataViewModel.buildInsertComponent(
+                val insertedComponent = insertDataViewModel.buildInsertComponent(
                     componentName,
                     binding.acceptedNameIet.text.toString(),
                     binding.countOfComponentsIet.text.toString(),
                     binding.clickableDateTv.text.toString()
                 )
 
-                if (insertDataViewModel.insertedComponent.value != null) {
-                    insertDataViewModel.insertComponent(
-                        insertDataViewModel.insertedComponent.value as Component
-                    )
-                }
+                insertDataViewModel.insertNewComponent(insertedComponent)
+                insertDataViewModel.addComponentToFirebase(insertedComponent)
+
+                Log.d(DEBUG_TAG, insertedComponent.contractId.toString())
 
                 snackBar("Компонент добавлен")
             }
@@ -87,9 +89,6 @@ class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
     }
 
     private fun setObservers() {
-        insertDataViewModel.insertedComponent.observe(viewLifecycleOwner) {
-
-        }
     }
 
     private fun setAdapters() {
@@ -155,8 +154,8 @@ class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
 
         val dateSetListener = DatePickerDialog.OnDateSetListener {
                 _, year, month, day ->
-            val date = "$day.${month + 1}.$year"
-            Log.d("Insert", date)
+            // "$day.${month + 1}.$year"
+            val date = "${month+1}.$day.$year"
             if (insertDataViewModel.isCurrentDate(date)) {
                 binding.clickableDateTv.text = date
             }

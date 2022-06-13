@@ -6,7 +6,9 @@ package com.example.feature_insert_data.di
 
 import com.example.core.database.base.MyDatabase
 import com.example.core.database.dao.ComponentsDao
+import com.example.feature_insert_data.data.repository.FirebaseRepositoryImpl
 import com.example.feature_insert_data.data.repository.InsertRepositoryImpl
+import com.example.feature_insert_data.domain.FirebaseRepository
 import com.example.feature_insert_data.domain.InsertRepository
 import com.example.feature_insert_data.domain.interactor.InsertInteractor
 import com.example.feature_insert_data.domain.interactor.InsertInteractorImpl
@@ -26,8 +28,15 @@ val insertModule = module {
             componentsDao = get() as ComponentsDao
         ) }
 
+    factory<FirebaseRepository> {
+        FirebaseRepositoryImpl(
+            componentsDao = get() as ComponentsDao
+        )
+    }
+
     factory<InsertInteractor> { InsertInteractorImpl(
-        insertRepository = get()
+        insertRepository = get(),
+        firebaseRepository = get()
     ) }
 
     single { InsertValidator() }

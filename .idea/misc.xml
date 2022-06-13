@@ -3,7 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ComponentsMetric/app/src/main/res/drawable-v24/ic_calendar.xml" value="0.206" />
+        <entry key="..\:/ComponentsMetric/app/src/main/res/drawable-v24/ic_channel.xml" value="0.206" />
+        <entry key="..\:/ComponentsMetric/app/src/main/res/drawable-v24/ic_home.xml" value="0.206" />
+        <entry key="..\:/ComponentsMetric/app/src/main/res/drawable/ic_launcher_background.xml" value="0.206" />
         <entry key="..\:/ComponentsMetric/app/src/main/res/layout/activity_main.xml" value="0.12360688956433637" />
+        <entry key="..\:/ComponentsMetric/app/src/main/res/menu/menu_bottom_nav.xml" value="0.25416666666666665" />
         <entry key="..\:/ComponentsMetric/feature_components/src/main/res/drawable/shimmer_roundc_orner.xml" value="0.206" />
         <entry key="..\:/ComponentsMetric/feature_components/src/main/res/layout/fragment_components.xml" value="0.2" />
         <entry key="..\:/ComponentsMetric/feature_components/src/main/res/layout/item_component.xml" value="0.264" />
