@@ -12,9 +12,12 @@ import com.example.core.database.entity.ComponentsEntity
  * My database
  *
  * @author Zashaev Astemir on 2022-04-09
+ *
+ * @author Asanov Albek on 2022-06-10
+ * Изменил Версию до 2, чтобы добавить автоинкремент поля componentId
  */
 @Database(
-    entities = [ComponentsEntity::class], version = 1, exportSchema = false
+    entities = [ComponentsEntity::class], version = 2, exportSchema = false
 )
 abstract class MyDatabase : RoomDatabase() {
     /** для получения зависимости в data module в koin */

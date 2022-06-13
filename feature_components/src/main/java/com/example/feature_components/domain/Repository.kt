@@ -1,5 +1,6 @@
 package com.example.feature_components.domain
 
+import com.example.core.database.entity.ComponentsEntity
 import com.example.feature_components.data.model.Component
 
 /**
@@ -14,8 +15,10 @@ interface Repository {
     /** Возвращает контракты из бд */
     suspend fun getAllComponentFromDb(status: String): List<Component>
 
-    /** Занести данные в бд */
-    suspend fun setAllComponentToDb()
+    /** Занести данные в бд
+     * upd : Asanov Albek 13.06.2022
+     * */
+    suspend fun setAllComponentToDb(components : List<ComponentsEntity>)
 
     /** Поиск компонента по ключевому слову [query]*/
     suspend fun searchComponent(query: String): List<Component>
