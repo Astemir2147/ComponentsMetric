@@ -21,15 +21,20 @@ class InsertDataViewModel(
     private val insertInteractor: InsertInteractor,
     private val validator : InsertValidator
 ) : ViewModel() {
-
-    private var _insertedComponent = MutableLiveData<Component>()
-    val insertedComponent : LiveData<Component> get() = _insertedComponent
-
     /**
      * Метод, меняющий дату, если она правильная
      */
-    fun isCurrentDate(date : String) : Boolean{
-        val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+
+    fun addComponentToFirebase(component: Component) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                insertInteractor.addComponentToFirebase(component)
+            }
+        }
+    }
+
+    fun isCurrentDate(date : String) : Boolean {
+        val dateFormat = SimpleDateFormat("MM.dd.yyyy", Locale.getDefault())
 
         val dateToDate = dateFormat.parse(date)
 
@@ -39,26 +44,42 @@ class InsertDataViewModel(
     fun getComponentName(category: String, brand: String, model: String) =
         insertInteractor.buildComponentName(category, brand, model)
 
+    fun getDao() = insertInteractor.getRepository().getDao()
+
+    fun getCountOfAllOrders() : Int {
+        var size = 0
+
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                size = getDao().getAllComponents().size
+            }
+        }
+
+        return size
+    }
+
+    fun insertNewComponent(component : Component) {
+
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                insertInteractor.insertNewComponent(component)
+            }
+        }
+    }
+
     fun buildInsertComponent(
         componentName: String,
         acceptedPersonName: String,
         componentsCount: String,
         selectedDate: String
-    ) {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                val component = insertInteractor.newComponent(
+    )  = insertInteractor.newComponent(
+            0,
                     componentName,
                     acceptedPersonName,
                     componentsCount,
                     selectedDate
                 )
-                withContext(Dispatchers.Main) {
-                    _insertedComponent.value = component
-                }
-            }
-        }
-    }
+
 
     fun getDateToday() = insertInteractor.getActualCalendarDate()
 

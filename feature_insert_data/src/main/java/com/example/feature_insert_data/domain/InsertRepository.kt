@@ -8,6 +8,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import com.example.core.database.dao.ComponentsDao
 import com.example.core.database.entity.ComponentsEntity
 import com.example.feature_insert_data.data.models.Component
 
@@ -24,6 +25,7 @@ interface InsertRepository {
     fun getActualDate() : String
 
     fun buildComponent(
+        contractId : Long,
         componentName : String,
         senderName : String,
         itemsCount : String,
@@ -31,4 +33,7 @@ interface InsertRepository {
     ) : Component
 
     fun getComponentName(category : String, brand : String, model : String) : String
+    fun getDao() : ComponentsDao
+
+    fun addNewComponentToDb(component: Component)
 }

@@ -23,6 +23,12 @@ abstract class ComponentsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun setAllComponents(contract: List<ComponentsEntity>)
 
+    /** Добавляет один компонент в базу данных
+     * @author Asanov Albek on 2022-06-10
+     * */
+    @Insert
+    abstract fun insertNewComponent(component : ComponentsEntity)
+
     /** Возвращает все установленные комплектующие */
     @Query("SELECT * FROM components WHERE ${DatabaseConst.STATUS_OF_COMPONENT} = :status")
     abstract fun getComponentsForStatus(status: String): List<ComponentsEntity>

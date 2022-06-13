@@ -15,7 +15,7 @@ class InsertValidator {
      * @param date - дата, которую надо проверить
      */
     fun isValidDate(date : Date) : Boolean {
-        val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+        val simpleDateFormat = SimpleDateFormat("MM.dd.yyyy", Locale.getDefault())
 
         // Верхний порог даты, пока что установил 2030 год
         val maximalDate = simpleDateFormat.parse("01.01.2030")
