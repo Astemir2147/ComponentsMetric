@@ -40,7 +40,8 @@ class ComponentsViewModel(
         get() = searchedContractList
 
     fun init() {
-        setContractsToDb()
+        //setContractsToDb()
+        loadComponentsToRoom()
     }
 
     fun searchComponent(query: String):LiveData<List<Component>> {
@@ -56,13 +57,13 @@ class ComponentsViewModel(
         return searchContrac
     }
 
-    fun setContractsToDb() {
+    /*fun setContractsToDb() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 componentsInteractor.setAllContractToDb()
             }
         }
-    }
+    }*/
 
     fun getAcceptedContractsFromDb() {
         viewModelScope.launch {
@@ -99,4 +100,13 @@ class ComponentsViewModel(
             }
         }
     }
+
+    fun loadComponentsToRoom() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                componentsInteractor.getComponentsFromFirebase()
+            }
+        }
+    }
+
 }

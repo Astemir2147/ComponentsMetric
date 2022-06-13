@@ -25,6 +25,7 @@ class ComponentsFragment : Fragment(R.layout.fragment_components), SearchView.On
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         componentsBinding = FragmentComponentsBinding.inflate(inflater, container, false)
+        // Здесь достаются компоненты из firebase и записываются в room
         componentsViewModel.init()
 
         binding.searchView.setOnQueryTextListener(this)

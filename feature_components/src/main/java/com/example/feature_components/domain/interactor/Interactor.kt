@@ -16,8 +16,12 @@ interface Interactor {
     suspend fun getComponentsFromDb(status: String): List<Component>
 
     /** Внесение данных в БД */
-    suspend fun setAllContractToDb()
+    //suspend fun setAllContractToDb()
 
     /** Поиск компонента по ключевому слову [query]*/
     suspend fun searchComponent(query: String): List<Component>
+
+    /** Добавление в room компонентов, полученных из firebase
+     * @author Asanov Albek */
+    suspend fun getComponentsFromFirebase()
 }
