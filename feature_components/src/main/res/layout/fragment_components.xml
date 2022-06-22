@@ -8,46 +8,39 @@
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_margin="@dimen/paddingXS"
-        >
+        android:layout_margin="@dimen/paddingXS">
 
     </androidx.appcompat.widget.SearchView>
-    <LinearLayout
-        android:id="@+id/filters_bar"
+    <com.google.android.material.button.MaterialButtonToggleGroup
+
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:backgroundTint="#DFE4D6"
+
+        android:id="@+id/toggle_button_group"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="@dimen/paddingXS"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        app:layout_constraintTop_toBottomOf="parent">
-
-        <TextView
+        android:layout_height="wrap_content"
+        app:singleSelection="true"
+        app:selectionRequired="true"
+        android:gravity="center">
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/filter_accept"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_margin="@dimen/paddingSM"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/received" />
-
-        <TextView
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/received"/>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/filter_installed"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_margin="@dimen/paddingSM"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/installed" />
-
-        <TextView
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/installed"/>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/filter_discarded"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_margin="@dimen/paddingSM"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/discarded" />
-    </LinearLayout>
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/discarded"/>
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPosts"
