@@ -1,5 +1,7 @@
 /**
- * @author Asanov Albek
+ * Модуль для добавления компонентов
+ *
+ * @author Asanov Albek 25.06.2022
  */
 
 package com.example.feature_insert_data.di
@@ -29,9 +31,7 @@ val insertModule = module {
         ) }
 
     factory<FirebaseRepository> {
-        FirebaseRepositoryImpl(
-            componentsDao = get() as ComponentsDao
-        )
+        FirebaseRepositoryImpl()
     }
 
     factory<InsertInteractor> { InsertInteractorImpl(

@@ -1,5 +1,6 @@
 package com.example.feature_components.domain.interactor
 
+import com.example.core.database.entity.ComponentsEntity
 import com.example.feature_components.data.model.Component
 
 /**
@@ -15,13 +16,12 @@ interface Interactor {
     /** Получение всех контрактов из БД с определенным статусом [status] */
     suspend fun getComponentsFromDb(status: String): List<Component>
 
-    /** Внесение данных в БД */
-    //suspend fun setAllContractToDb()
-
     /** Поиск компонента по ключевому слову [query]*/
     suspend fun searchComponent(query: String): List<Component>
 
     /** Добавление в room компонентов, полученных из firebase
      * @author Asanov Albek */
     suspend fun getComponentsFromFirebase()
+
+    suspend fun deleteRoomComponents(components : List<Component>)
 }

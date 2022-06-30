@@ -22,4 +22,6 @@ interface Repository {
 
     /** Поиск компонента по ключевому слову [query]*/
     suspend fun searchComponent(query: String): List<Component>
+
+    suspend fun deleteComponents(components : List<ComponentsEntity>)
 }

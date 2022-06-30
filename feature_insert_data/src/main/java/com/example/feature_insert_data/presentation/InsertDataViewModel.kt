@@ -4,8 +4,6 @@
 
 package com.example.feature_insert_data.presentation
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.feature_insert_data.data.models.Component
@@ -15,7 +13,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Locale
+
+/**
+ * ViewModel для добавления компонентов
+ *
+ * @author Asanov Albek 25.06.2022
+ */
 
 class InsertDataViewModel(
     private val insertInteractor: InsertInteractor,
@@ -44,20 +48,6 @@ class InsertDataViewModel(
     fun getComponentName(category: String, brand: String, model: String) =
         insertInteractor.buildComponentName(category, brand, model)
 
-    fun getDao() = insertInteractor.getRepository().getDao()
-
-    fun getCountOfAllOrders() : Int {
-        var size = 0
-
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                size = getDao().getAllComponents().size
-            }
-        }
-
-        return size
-    }
-
     fun insertNewComponent(component : Component) {
 
         viewModelScope.launch {
@@ -82,12 +72,4 @@ class InsertDataViewModel(
 
 
     fun getDateToday() = insertInteractor.getActualCalendarDate()
-
-        fun insertComponent(component: Component) {
-            viewModelScope.launch {
-                withContext(Dispatchers.IO) {
-                insertInteractor.addComponentToDB(component)
-                }
-            }
-        }
     }

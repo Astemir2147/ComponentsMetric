@@ -13,8 +13,13 @@ import com.example.feature_insert_data.databinding.FragmentInsertDataBinding
 import com.example.feature_insert_data.di.insertInject
 import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import java.util.*
+import java.util.Calendar
 
+/**
+ * Фрагмент для добавления комплектующих
+ *
+ * @author Asanov Albek 25.06.2022
+ */
 class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
 
     companion object {
@@ -37,7 +42,6 @@ class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
     ): View {
         homePageBinding = FragmentInsertDataBinding.inflate(inflater, container, false)
         binding.clickableDateTv.text = insertDataViewModel.getDateToday()
-        setObservers()
         setClickListeners()
         setAdapters()
         setFocusChanges()
@@ -88,9 +92,6 @@ class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
             .show()
     }
 
-    private fun setObservers() {
-    }
-
     private fun setAdapters() {
 
         val categoryAdapter = ArrayAdapter(
@@ -138,7 +139,7 @@ class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
         }
     }
 
-    // Функция проверки на заполненность всех полей
+    /** Функция проверки на заполненность всех полей */
     private fun isAnyEmptyField() : Boolean =
         with(binding) {
             brandAutoTv.text.isEmpty() || categoryAutoTv.text.isEmpty() ||
@@ -154,8 +155,9 @@ class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
 
         val dateSetListener = DatePickerDialog.OnDateSetListener {
                 _, year, month, day ->
+            //"${month+1}.$day.$year"
             // "$day.${month + 1}.$year"
-            val date = "${month+1}.$day.$year"
+            val date = "$day.${month + 1}.$year"
             if (insertDataViewModel.isCurrentDate(date)) {
                 binding.clickableDateTv.text = date
             }

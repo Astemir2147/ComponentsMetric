@@ -1,6 +1,5 @@
 package com.example.feature_components.data.repository
 
-import android.util.Log
 import com.example.core.database.dao.ComponentsDao
 import com.example.core.database.entity.ComponentsEntity
 import com.example.feature_components.domain.FirebaseRepository
@@ -10,8 +9,14 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
+/**
+ * Имплементация FirebaseRepository для получения данных из сети
+ *
+ * @author Asanov Albek 24.06.2022
+ */
+
 class FirebaseRepositoryImpl(
-    private val componentsDao: ComponentsDao,
+    private val componentsDao: ComponentsDao
 ) : FirebaseRepository{
 
     private val firebase = FirebaseFirestore.getInstance()
@@ -20,8 +25,10 @@ class FirebaseRepositoryImpl(
     override suspend fun getComponentsFromFirebase() {
 
         componentsCollection.get()
+                // Если успешно получен документ
             .addOnSuccessListener { snapshot ->
 
+                // Парсинг компонента
                     val firebaseComponents = snapshot.documents.map { snapshotItem ->
                         ComponentsEntity(
                             contractId = snapshotItem.get("contractId") as Long,
@@ -33,19 +40,13 @@ class FirebaseRepositoryImpl(
                         )
                 }
 
-                firebaseComponents.forEach { Log.i("Components", it.toString()) }
-                snapshot.documents.forEach { Log.i("Snapshot", it.toString()) }
-
-                GlobalScope.launch {
-                    withContext(Dispatchers.IO) {
-                        componentsDao.setAllComponents(firebaseComponents)
+                    GlobalScope.launch {
+                        withContext(Dispatchers.IO) {
+                            componentsDao.setAllComponents(firebaseComponents)
+                        }
                     }
-                }
-
-                Log.i("Components", "Данные загружены")
             }
-            .addOnFailureListener { exeption ->
-                Log.w("Components", "Данные из firestore не загружены.\n ${exeption.message}")
-            }
+                // Если получен не успешно ( пока ничего не делаем )
+            .addOnFailureListener {  }
     }
 }

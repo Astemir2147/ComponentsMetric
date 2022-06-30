@@ -1,6 +1,10 @@
 package com.example.feature_components.domain
 
-import com.example.core.database.entity.ComponentsEntity
+/**
+ * Интерфейс для работы с Firebase Firestore, для получения компонентов из сети
+ *
+ * @author Asanov Albek 25.06.2022
+ */
 
 interface FirebaseRepository {
     /**

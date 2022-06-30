@@ -4,36 +4,49 @@
 
 package com.example.feature_insert_data.domain
 
-import android.app.DatePickerDialog
-import android.content.Context
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import com.example.core.database.dao.ComponentsDao
-import com.example.core.database.entity.ComponentsEntity
 import com.example.feature_insert_data.data.models.Component
+
+/**
+ * Интерфейс для работы с room и добавлением в него компонентов
+ * @author Asanov Albek 25.06.2022
+ */
 
 interface InsertRepository {
 
     /**
-     * Добавление в базу
-     */
-    fun addToDatabase(component : Component)
-
-    /**
      * Получение сегодняшней даты
+     * @return сегодняшняя дата, конвертируемая в формате dd.MM.yyyy / MM.dd.yyyy
      */
     fun getActualDate() : String
 
+    /**
+     * @param contractId - идентификатор контракта
+     * @param componentName - название комплектующей
+     * @param accepting - имя принимающего комплектующие
+     * @param itemsCount - количество комплектующих
+     * @param acceptDate - дата принятия
+     * @return Новый компонент
+     */
     fun buildComponent(
         contractId : Long,
         componentName : String,
-        senderName : String,
+        accepting : String,
         itemsCount : String,
         acceptDate : String
     ) : Component
 
+    /**
+     * Складывает категорию, брэнд и модель в одну строку
+     * @param category - категория компонента (тип комплектующей)
+     * @param brand - брэнд (производитель)
+     * @param model - модель комплектующей
+     * @return полное название комплектующей
+     */
     fun getComponentName(category : String, brand : String, model : String) : String
-    fun getDao() : ComponentsDao
 
+    /**
+     * Добавляет компонент в room
+     * @param component - добавляемый компонент
+     */
     fun addNewComponentToDb(component: Component)
 }

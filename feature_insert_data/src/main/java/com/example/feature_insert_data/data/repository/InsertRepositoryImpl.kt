@@ -16,14 +16,6 @@ class InsertRepositoryImpl(
     private val componentsDao : ComponentsDao,
     ) : InsertRepository {
 
-    override fun addToDatabase(component : Component) {
-        componentsDao.setAllComponents(
-            listOf (
-                component.componentToComponentEntity()
-                )
-        )
-    }
-
     override fun addNewComponentToDb(component: Component) =
         componentsDao.insertNewComponent(component.componentToComponentEntity())
 
@@ -35,13 +27,11 @@ class InsertRepositoryImpl(
         val currentDate = Date()
 
         // Задаём ей формат
-        val dateFormat = SimpleDateFormat("MM.dd.yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
 
         // Возвращаем строку с сегодняшней датой в указанном формате
         return dateFormat.format(currentDate)
     }
-
-    override fun getDao() = componentsDao
 
     override fun buildComponent(
         contractId : Long,
@@ -54,7 +44,7 @@ class InsertRepositoryImpl(
             personWitchAccept = acceptedPersonName,
             countOfItem = itemsCount,
             dateOfAccept = acceptDate,
-            statusOfComponent = "Installed"
+            statusOfComponent = "ReadyForUse"
         )
 
     override fun getComponentName(

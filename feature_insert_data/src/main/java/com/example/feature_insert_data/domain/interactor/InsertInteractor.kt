@@ -1,27 +1,66 @@
 /**
+ * Интерактор для работы с добавлением компонента в базу и на сервер
+ *
  * @author Asanov Albek
  */
 
 package com.example.feature_insert_data.domain.interactor
 
-import android.app.DatePickerDialog
 import com.example.feature_insert_data.data.models.Component
-import com.example.feature_insert_data.domain.InsertRepository
 import com.google.firebase.firestore.DocumentReference
 
+/**
+ * Интерактор для работы с данными, записываемыми в Room и Firebase Firestore
+ *
+ * @author Asanov Albek 25.06.2022
+ */
+
 interface InsertInteractor {
-    fun addComponentToDB(component : Component)
+    /**
+     * Метод для получения сегодняшней даты
+     */
     fun getActualCalendarDate() : String
+
+    /**
+     * Метод для создания компонента
+     * @param contractId - идентификатор контракта
+     * @param componentName - название комплектующей
+     * @param accepting - имя принимающего комплектующие
+     * @param itemsCount - количество комплектующих
+     * @param acceptDate - дата принятия
+     * @return Новый компонент
+     */
     fun newComponent(
         contractId : Long,
         componentName: String,
-        senderName: String, itemsCount: String,
+        accepting: String, itemsCount: String,
         acceptDate: String) : Component
+
+    /**
+     * Метод для составления названия компонента из категории, брэнда и модели
+     * @param category - категория компонента (тип комплектующей)
+     * @param brand - брэнд (производитель)
+     * @param model - модель комплектующей
+     * @return полное название комплектующей
+     */
     fun buildComponentName(category: String, brand: String, model : String) : String
-    fun getRepository() : InsertRepository
+
+    /**
+     * Добавление компонента в room
+     * @param component - добавляемый компонент
+     */
     fun insertNewComponent(component: Component)
 
-    //fun getComponentsFromFirebase()
+    /**
+     * Добавление компонента на сервер
+     * @param component - добавляемый компонент
+     */
     fun addComponentToFirebase(component : Component)
+
+    /**
+     * Получение документа по его названию (пока не используется)
+     * @param docName - название документа в FirebaseFirestore
+     * @return документ в виде DocumentReference
+     */
     fun getFirebaseDoc(docName : String) : DocumentReference
 }

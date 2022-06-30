@@ -1,9 +1,6 @@
 package com.example.core.database.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.core.database.DatabaseConst
 import com.example.core.database.entity.ComponentsEntity
 
@@ -11,6 +8,7 @@ import com.example.core.database.entity.ComponentsEntity
  * Database Access Object для доступа к компонентам пользователя в базе данных
  *
  * @author Astemir Zashaev on 2022-04-7
+ * @author Asanov Albek on 2022-06-10
  */
 @Dao
 abstract class ComponentsDao {
@@ -23,11 +21,13 @@ abstract class ComponentsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun setAllComponents(contract: List<ComponentsEntity>)
 
-    /** Добавляет один компонент в базу данных
-     * @author Asanov Albek on 2022-06-10
-     * */
+    /** Добавляет один компонент в базу данных */
     @Insert
     abstract fun insertNewComponent(component : ComponentsEntity)
+
+    /** Удаляет все комплектующие */
+    @Delete
+    abstract fun deleteAllComponents(components : List<ComponentsEntity>)
 
     /** Возвращает все установленные комплектующие */
     @Query("SELECT * FROM components WHERE ${DatabaseConst.STATUS_OF_COMPONENT} = :status")

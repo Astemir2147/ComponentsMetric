@@ -14,9 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore
  * Класс для работы с Firestore
  */
 
-class FirebaseRepositoryImpl(
-    private val componentsDao: ComponentsDao
-) : FirebaseRepository {
+class FirebaseRepositoryImpl : FirebaseRepository {
 
     companion object {
         const val COMPONENTS_COLLECTION_PATH = "Components"
@@ -40,12 +38,7 @@ class FirebaseRepositoryImpl(
                 "dateOfAccept" to component.dateOfAccept,
                 "statusOfComponent" to component.statusOfComponent
             )
-        ).addOnSuccessListener {
-            Log.i("Insert", "Компонент успешно добавлен,\n path = ${it.path} ")
-        }
-            .addOnFailureListener {
-                Log.i("Insert", "Компонент не добавлен, ошибка = ${it.message}")
-            }
+        ).addOnSuccessListener { }.addOnFailureListener { }
     }
 
     override fun getFirebaseDoc(docName: String) : DocumentReference =

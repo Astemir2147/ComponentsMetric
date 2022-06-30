@@ -1,6 +1,7 @@
 package com.example.feature_components.domain.interactor
 
 import android.util.Log
+import com.example.feature_components.data.extension.componentToComponentEntity
 import com.example.feature_components.data.model.Component
 import com.example.feature_components.domain.FirebaseRepository
 import com.example.feature_components.domain.Repository
@@ -17,10 +18,6 @@ class InteractorImpl(
         return componentRepository.getAllComponentFromDb(status)
     }
 
-    /*override suspend fun setAllContractToDb() {
-        componentRepository.setAllComponentToDb()
-    }*/
-
     override suspend fun searchComponent(query: String): List<Component>{
         return componentRepository.searchComponent(query)
     }
@@ -28,4 +25,6 @@ class InteractorImpl(
     override suspend fun getComponentsFromFirebase() =
         firebaseRepository.getComponentsFromFirebase()
 
+    override suspend fun deleteRoomComponents(components: List<Component>) =
+        componentRepository.deleteComponents(components.map { it.componentToComponentEntity() })
 }
