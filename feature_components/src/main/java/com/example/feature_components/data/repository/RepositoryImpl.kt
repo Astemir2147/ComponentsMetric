@@ -9,7 +9,7 @@ import com.example.feature_components.domain.Repository
 class RepositoryImpl(private val dao: ComponentsDao) : Repository {
 
     override suspend fun searchComponent(query: String): List<Component> {
-       return dao.searchComponent(query).map { it.componentsEntityToComponents() }
+        return dao.searchComponent(query).map { it.componentsEntityToComponents() }
     }
 
     override suspend fun getComponentsForStatus(status: String): List<Component> {
