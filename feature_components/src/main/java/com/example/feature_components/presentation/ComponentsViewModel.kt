@@ -4,13 +4,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.MutableLiveData
+import com.example.core.database.DatabaseConst.ACCEPTED
 import com.example.feature_components.data.DatabaseConstStatus
+import com.example.feature_components.data.DatabaseConstStatus.DISCARDED
+import com.example.feature_components.data.DatabaseConstStatus.INSTALLED
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.Dispatchers
 import com.example.feature_components.data.model.Component
 import com.example.feature_components.domain.interactor.Interactor
-import kotlin.contracts.contract
 
 /**
  * Вьюмодель для получения списка контрактов
@@ -39,8 +41,18 @@ class ComponentsViewModel(
     val searchContrac: LiveData<List<Component>>
         get() = searchedContractList
 
+    fun deleteAllContractsToDb() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                val allContracts = componentsInteractor.getComponentsFromDb()
+                componentsInteractor.deleteRoomComponents(allContracts)
+            }
+        }
+    }
+
     fun init() {
-        setContractsToDb()
+        deleteAllContractsToDb()
+        loadComponentsToRoom()
     }
 
     fun searchComponent(query: String):LiveData<List<Component>> {
@@ -56,19 +68,11 @@ class ComponentsViewModel(
         return searchContrac
     }
 
-    fun setContractsToDb() {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                componentsInteractor.setAllContractToDb()
-            }
-        }
-    }
-
     fun getAcceptedContractsFromDb() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val contracts = componentsInteractor
-                    .getComponentsFromDb(DatabaseConstStatus.READY_FOR_USE)
+                    .getComponentsForStatus(DatabaseConstStatus.READY_FOR_USE)
                 withContext(Dispatchers.Main) {
                     acceptedContractsListMutableLiveDataFromDb.postValue(contracts)
                 }
@@ -99,4 +103,13 @@ class ComponentsViewModel(
             }
         }
     }
+
+    fun loadComponentsToRoom() {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                componentsInteractor.getComponentsFromFirebase()
+            }
+        }
+    }
+
 }

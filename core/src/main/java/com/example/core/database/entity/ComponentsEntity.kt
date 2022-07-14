@@ -19,7 +19,7 @@ import com.example.core.database.DatabaseConst.STATUS_OF_COMPONENT
 
 @Entity(tableName = COMPONENTS)
 data class ComponentsEntity (
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = ID)
     val contractId: Long,
 

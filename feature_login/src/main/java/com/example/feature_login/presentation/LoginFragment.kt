@@ -53,6 +53,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         findNavController().navigate(R.id.auth_to_components)
     }
 
+
     private fun onSuccess(success: Boolean) {
         goToComponents()
     }
@@ -67,7 +68,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun signIn() {
         val user = getAuthenticateUser()
-
         if (loginViewModel.validateFields(user)) {
             auth.signInWithEmailAndPassword(user.email, user.password).addOnCompleteListener(requireActivity())
             { task ->
