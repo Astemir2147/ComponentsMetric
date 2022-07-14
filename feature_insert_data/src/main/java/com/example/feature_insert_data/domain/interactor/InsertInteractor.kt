@@ -22,21 +22,6 @@ interface InsertInteractor {
     fun getActualCalendarDate() : String
 
     /**
-     * Метод для создания компонента
-     * @param contractId - идентификатор контракта
-     * @param componentName - название комплектующей
-     * @param accepting - имя принимающего комплектующие
-     * @param itemsCount - количество комплектующих
-     * @param acceptDate - дата принятия
-     * @return Новый компонент
-     */
-    fun newComponent(
-        contractId : Long,
-        componentName: String,
-        accepting: String, itemsCount: String,
-        acceptDate: String) : Component
-
-    /**
      * Метод для составления названия компонента из категории, брэнда и модели
      * @param category - категория компонента (тип комплектующей)
      * @param brand - брэнд (производитель)

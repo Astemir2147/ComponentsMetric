@@ -23,12 +23,16 @@ class ComponentsFragment : Fragment(R.layout.fragment_components), SearchView.On
     private lateinit var componentsAdapter: ComponentAdapter
     private val componentsViewModel by viewModel<ComponentsViewModel>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        upsertComponents()
+    }
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         componentsBinding = FragmentComponentsBinding.inflate(inflater, container, false)
 
         binding.searchView.setOnQueryTextListener(this)
         setFiltersClickListener()
-        upsertComponents()
         setAcceptedComponents()
         return binding.root
     }

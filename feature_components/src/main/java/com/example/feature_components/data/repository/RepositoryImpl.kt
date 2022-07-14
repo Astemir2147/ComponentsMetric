@@ -16,8 +16,8 @@ class RepositoryImpl(private val dao: ComponentsDao) : Repository {
         return dao.getComponentsForStatus(status).map { it.componentsEntityToComponents() }
     }
 
-    override suspend fun getAllComponentFromDb(status: String): List<Component> {
-        return dao.getComponentsForStatus(status).map { it.componentsEntityToComponents() }
+    override suspend fun getAllComponentFromDb(): List<Component> {
+        return dao.getAllComponents().map { it.componentsEntityToComponents() }
     }
 
     //TODO(изменить параметр [components] на dto сети в дальнейшем))

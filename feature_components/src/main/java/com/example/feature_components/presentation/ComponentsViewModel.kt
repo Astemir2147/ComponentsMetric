@@ -44,10 +44,7 @@ class ComponentsViewModel(
     fun deleteAllContractsToDb() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val installedContracts = componentsInteractor.getComponentsForStatus(INSTALLED)
-                val acceptedContracts = componentsInteractor.getComponentsForStatus(ACCEPTED)
-                val discardedContracts = componentsInteractor.getComponentsForStatus(DISCARDED)
-                val allContracts = installedContracts + acceptedContracts + discardedContracts
+                val allContracts = componentsInteractor.getComponentsFromDb()
                 componentsInteractor.deleteRoomComponents(allContracts)
             }
         }
@@ -75,7 +72,7 @@ class ComponentsViewModel(
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 val contracts = componentsInteractor
-                    .getComponentsFromDb(DatabaseConstStatus.READY_FOR_USE)
+                    .getComponentsForStatus(DatabaseConstStatus.READY_FOR_USE)
                 withContext(Dispatchers.Main) {
                     acceptedContractsListMutableLiveDataFromDb.postValue(contracts)
                 }

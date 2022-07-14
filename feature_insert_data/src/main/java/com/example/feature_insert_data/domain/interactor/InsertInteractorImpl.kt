@@ -26,15 +26,6 @@ class InsertInteractorImpl(
 
     override fun getActualCalendarDate() = insertRepository.getActualDate()
 
-    override fun newComponent(
-        contractId : Long,
-        componentName: String,
-        acceptedPersonName: String,
-        itemsCount: String,
-        acceptDate: String,
-    ) = insertRepository.buildComponent(
-        contractId, componentName, acceptedPersonName, itemsCount, acceptDate)
-
     override fun buildComponentName(category: String, brand: String, model: String) =
         insertRepository.getComponentName(category, brand, model)
 

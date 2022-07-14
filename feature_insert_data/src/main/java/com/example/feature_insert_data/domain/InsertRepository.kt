@@ -20,22 +20,6 @@ interface InsertRepository {
     fun getActualDate() : String
 
     /**
-     * @param contractId - идентификатор контракта
-     * @param componentName - название комплектующей
-     * @param accepting - имя принимающего комплектующие
-     * @param itemsCount - количество комплектующих
-     * @param acceptDate - дата принятия
-     * @return Новый компонент
-     */
-    fun buildComponent(
-        contractId : Long,
-        componentName : String,
-        accepting : String,
-        itemsCount : String,
-        acceptDate : String
-    ) : Component
-
-    /**
      * Складывает категорию, брэнд и модель в одну строку
      * @param category - категория компонента (тип комплектующей)
      * @param brand - брэнд (производитель)

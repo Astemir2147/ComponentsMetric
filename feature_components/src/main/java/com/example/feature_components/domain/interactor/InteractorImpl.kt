@@ -14,8 +14,8 @@ class InteractorImpl(
         return componentRepository.getComponentsForStatus(status)
     }
 
-    override suspend fun getComponentsFromDb(status: String): List<Component> {
-        return componentRepository.getAllComponentFromDb(status)
+    override suspend fun getComponentsFromDb(): List<Component> {
+        return componentRepository.getAllComponentFromDb()
     }
 
     override suspend fun searchComponent(query: String): List<Component>{

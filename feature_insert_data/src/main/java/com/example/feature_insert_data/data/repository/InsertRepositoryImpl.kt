@@ -33,20 +33,6 @@ class InsertRepositoryImpl(
         return dateFormat.format(currentDate)
     }
 
-    override fun buildComponent(
-        contractId : Long,
-        componentName: String,
-        acceptedPersonName: String,
-        itemsCount: String,
-        acceptDate: String) = Component(
-            contractId = contractId,
-            componentName = componentName,
-            personWitchAccept = acceptedPersonName,
-            countOfItem = itemsCount,
-            dateOfAccept = acceptDate,
-            statusOfComponent = "ReadyForUse"
-        )
-
     override fun getComponentName(
         category: String,
         brand: String,

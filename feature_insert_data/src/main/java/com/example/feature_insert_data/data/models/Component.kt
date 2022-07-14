@@ -27,4 +27,12 @@ data class Component(
     val countOfItem: String,
     val dateOfAccept: String,
     val statusOfComponent: String
-)
+) {
+    constructor(
+        componentName: String,
+        personWitchAccept: String,
+        countOfItem: String,
+        dateOfAccept: String
+        ) : this(0, componentName, personWitchAccept, countOfItem,
+                    dateOfAccept, "ReadyForUse")
+}

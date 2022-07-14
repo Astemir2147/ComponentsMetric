@@ -10,11 +10,11 @@ import com.example.feature_components.data.model.Component
  */
 interface Interactor {
 
-    /** Получение всех контрактов из БД */
+    /** Получение всех контрактов из БД с определенным статусом [status]*/
     suspend fun getComponentsForStatus(status: String): List<Component>
 
-    /** Получение всех контрактов из БД с определенным статусом [status] */
-    suspend fun getComponentsFromDb(status: String): List<Component>
+    /** Получение всех контрактов из БД */
+    suspend fun getComponentsFromDb(): List<Component>
 
     /** Поиск компонента по ключевому слову [query]*/
     suspend fun searchComponent(query: String): List<Component>

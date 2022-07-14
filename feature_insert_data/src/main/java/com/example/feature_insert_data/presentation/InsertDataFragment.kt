@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.example.feature_insert_data.R
+import com.example.feature_insert_data.data.models.Component
 import com.example.feature_insert_data.databinding.FragmentInsertDataBinding
 import com.example.feature_insert_data.di.insertInject
 import com.google.android.material.snackbar.Snackbar
@@ -21,10 +22,6 @@ import java.util.Calendar
  * @author Asanov Albek 25.06.2022
  */
 class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
-
-    companion object {
-        const val DEBUG_TAG = "Insert debug"
-    }
 
     private var homePageBinding: FragmentInsertDataBinding? = null
     private val binding get() = homePageBinding!!
@@ -66,17 +63,15 @@ class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
                     binding.modelAutoTv.text.toString()
                 )
 
-                val insertedComponent = insertDataViewModel.buildInsertComponent(
-                    componentName,
-                    binding.acceptedNameIet.text.toString(),
-                    binding.countOfComponentsIet.text.toString(),
-                    binding.clickableDateTv.text.toString()
+                val insertedComponent = Component(
+                    componentName = componentName,
+                    personWitchAccept = binding.acceptedNameIet.text.toString(),
+                    countOfItem = binding.countOfComponentsIet.text.toString(),
+                    dateOfAccept = binding.clickableDateTv.text.toString()
                 )
 
                 insertDataViewModel.insertNewComponent(insertedComponent)
                 insertDataViewModel.addComponentToFirebase(insertedComponent)
-
-                Log.d(DEBUG_TAG, insertedComponent.contractId.toString())
 
                 snackBar("Компонент добавлен")
             }

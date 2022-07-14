@@ -13,7 +13,7 @@ interface Repository {
     suspend fun getComponentsForStatus(status: String): List<Component>
 
     /** Возвращает контракты из бд */
-    suspend fun getAllComponentFromDb(status: String): List<Component>
+    suspend fun getAllComponentFromDb(): List<Component>
 
     /** Занести данные в бд
      * upd : Asanov Albek 13.06.2022

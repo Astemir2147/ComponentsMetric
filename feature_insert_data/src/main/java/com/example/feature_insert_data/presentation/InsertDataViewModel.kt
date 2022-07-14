@@ -57,19 +57,5 @@ class InsertDataViewModel(
         }
     }
 
-    fun buildInsertComponent(
-        componentName: String,
-        acceptedPersonName: String,
-        componentsCount: String,
-        selectedDate: String
-    )  = insertInteractor.newComponent(
-            0,
-                    componentName,
-                    acceptedPersonName,
-                    componentsCount,
-                    selectedDate
-                )
-
-
     fun getDateToday() = insertInteractor.getActualCalendarDate()
     }
