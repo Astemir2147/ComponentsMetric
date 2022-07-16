@@ -54,13 +54,6 @@ class LoginViewModel(
     }
 
     fun validateFields(user: AuthDateUser): Boolean {
-        var isValid = true
-        if (validator.validateUsername(user.email, user.password)) {
-            isValid = false
-        }
-        if (!validator.validateEmail(user.email)) {
-            isValid = false
-        }
-        return isValid
+        return validator.validateFields(user)
     }
 }
