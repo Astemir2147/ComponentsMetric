@@ -1,5 +1,7 @@
 package com.example.feature_login.presentation.validation
 
+import com.example.feature_login.data.model.AuthDateUser
+
 /**
  * Класс содержащий методы салидаии для полей ввода при регистрации
  */
@@ -27,6 +29,17 @@ class Validator {
      */
     fun validateUsername(username: String, password: String): Boolean =
         username.isEmpty() && password.isEmpty()
+
+    fun validateFields(user: AuthDateUser): Boolean {
+        var isValid = true
+        if (validateUsername(user.email, user.password)) {
+            isValid = false
+        }
+        if (!validateEmail(user.email)) {
+            isValid = false
+        }
+        return isValid
+    }
 
     companion object {
         private val emailRegex = "[A-Za-z0-9_.]+@[A-Za-z0-9_.]+".toRegex()
