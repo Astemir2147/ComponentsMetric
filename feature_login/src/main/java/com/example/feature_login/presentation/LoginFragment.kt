@@ -1,10 +1,11 @@
 package com.example.feature_login.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import com.example.feature_login.R
 import com.example.feature_login.databinding.FragmentLoginBinding
@@ -12,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.feature_login.data.model.AuthDateUser
 import com.example.feature_login.data.model.authDateUserToCookie
 import com.example.feature_login.di.inject
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -40,7 +42,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.authAsGuest.setOnClickListener { goToComponents() }
-        binding.loginButton.setOnClickListener { signIn() }
+        binding.loginButton.setOnClickListener {
+            binding.root.hideKeyboard()
+            signIn()
+        }
+        binding.createAccount.setOnClickListener { goToRegistration() }
+    }
+
+    private fun goToRegistration() {
+        findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
     }
 
     private fun getAuthenticateUser(): AuthDateUser {
@@ -53,13 +63,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         findNavController().navigate(R.id.auth_to_components)
     }
 
-
     private fun onSuccess(success: Boolean) {
         goToComponents()
-    }
-
-    private fun toast(massage: String) {
-        Toast.makeText(context, massage, Toast.LENGTH_SHORT).show()
     }
 
     private fun saveCookie(user: AuthDateUser) {
@@ -76,12 +81,31 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     saveCookie(user)
                     goToComponents()
                 } else {
-                    toast("Wrong mail or password")
+                    showSnackBar(wrongDate)
                 }
             }
         } else {
-            toast("Invalid mail or password")
+            showSnackBar(invalidDate)
         }
+    }
+
+    private fun View.hideKeyboard() {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(windowToken, 0)
+    }
+
+    private fun showSnackBar(message: String) {
+        Snackbar.make(
+            binding.root,
+            message,
+            Snackbar.LENGTH_SHORT
+        ).setAction(cancel) {}.show()
+    }
+
+    companion object {
+        const val cancel = "cancel"
+        const val wrongDate = "Wrong mail or password"
+        const val invalidDate = "Invalid mail or password"
     }
 }
 

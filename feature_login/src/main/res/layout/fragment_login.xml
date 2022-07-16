@@ -58,8 +58,8 @@
         style="@style/LoginButtonStyle2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/button_login_horizontal_margin"
-        android:layout_marginEnd="@dimen/button_login_horizontal_margin"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="@drawable/oval_button"
         android:text="@string/login"
@@ -94,10 +94,9 @@
         app:layout_constraintTop_toBottomOf="@+id/reteive_password" />
 
     <TextView
-        android:id="@+id/to_account_creation"
+        android:id="@+id/create_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginBottom="24dp"
         android:text="@string/create_account"
         android:textColor="@color/black"
