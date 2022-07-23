@@ -1,18 +1,15 @@
 package com.example.feature_login.presentation
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.feature_login.R
 import com.example.feature_login.data.model.AuthDateUser
-import com.example.feature_login.data.model.authDateNewUserToCookie
+import com.example.feature_login.data.model.authDateUserToCookie
 import com.example.feature_login.databinding.FragmentRegistrationBinding
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -45,17 +42,22 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
     private fun registration() {
         val user = getUser()
+        val invalidDate = getString(R.string.invalidDate)
         if (registrationViewModel.validateFields(user)) {
-            FirebaseAuth.getInstance()
-                .createUserWithEmailAndPassword(user.email, user.password)
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        saveCookie(user)
-                        goToComponents()
+            if (registrationViewModel.passwordDifficult(user.password)) {
+                FirebaseAuth.getInstance()
+                    .createUserWithEmailAndPassword(user.email, user.password)
+                    .addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            saveCookie(user)
+                            goToComponents()
+                        }
                     }
-                }
+            } else {
+                seekPassword()
+            }
         } else {
-            showSnackBar(invalidDate)
+            showSnackBar(invalidDate, binding.root)
         }
     }
 
@@ -64,24 +66,10 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
     }
 
     private fun saveCookie(user: AuthDateUser) {
-        registrationViewModel.saveCookieFromPreferences(user.authDateNewUserToCookie())
+        registrationViewModel.saveCookieFromPreferences(user.authDateUserToCookie())
     }
 
-    private fun showSnackBar(message: String) {
-        Snackbar.make(
-            binding.root,
-            message,
-            Snackbar.LENGTH_SHORT
-        ).setAction(cancel) {}.show()
-    }
-
-    private fun View.hideKeyboard() {
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(windowToken, 0)
-    }
-
-    companion object {
-        const val invalidDate = "Invalid mail or password"
-        const val cancel = "cancel"
+    private fun seekPassword() {
+        binding.passwordInputLayout.error = getString(R.string.passSeekRecommendation)
     }
 }

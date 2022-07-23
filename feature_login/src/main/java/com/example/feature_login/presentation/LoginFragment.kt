@@ -1,30 +1,28 @@
 package com.example.feature_login.presentation
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
-import com.example.feature_login.R
-import com.example.feature_login.databinding.FragmentLoginBinding
 import androidx.navigation.fragment.findNavController
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.example.feature_login.data.model.AuthDateUser
 import com.example.feature_login.data.model.authDateUserToCookie
+import com.example.feature_login.R
+import com.example.feature_login.databinding.FragmentLoginBinding
 import com.example.feature_login.di.inject
-import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
-
     private var loginBinding: FragmentLoginBinding? = null
     private val binding get() = loginBinding!!
     private val loginViewModel by viewModel<LoginViewModel>()
     private lateinit var auth: FirebaseAuth
+    private var wrongDate: String = ""
+    private var invalidDate : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +34,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         loginBinding = FragmentLoginBinding.inflate(inflater, container, false)
         loginViewModel.loginAttemptResultLiveData.observe(viewLifecycleOwner, ::onSuccess)
         loginViewModel.checkLogined()
+        wrongDate = getString(R.string.wrongDate)
+        invalidDate = getString(R.string.invalidDate)
         return binding.root
     }
 
@@ -82,31 +82,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     saveCookie(user)
                     goToComponents()
                 } else {
-                    showSnackBar(wrongDate)
+                    showSnackBar(wrongDate, binding.root)
                 }
             }
         } else {
-            showSnackBar(invalidDate)
+            showSnackBar(invalidDate, binding.root)
         }
-    }
-
-    private fun View.hideKeyboard() {
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(windowToken, 0)
-    }
-
-    private fun showSnackBar(message: String) {
-        Snackbar.make(
-            binding.root,
-            message,
-            Snackbar.LENGTH_SHORT
-        ).setAction(cancel) {}.show()
-    }
-
-    companion object {
-        const val cancel = "cancel"
-        const val wrongDate = "Wrong mail or password"
-        const val invalidDate = "Invalid mail or password"
     }
 }
 

@@ -3,18 +3,12 @@ package com.example.feature_login.data.model
 import com.example.feature_login.data.Cookie
 
 class AuthDateUser(
-    val email: String = "",
-    val password: String = "",
-) {
-    var userName: String = ""
-    constructor(
-        userName: String = "",
-        email: String = "",
-        password: String = ""
-    ) : this(email, password) {
-        this.userName = userName
-    }
-}
+    val email: String = String.EMPTY,
+    val password: String = String.EMPTY,
+    val userName: String = String.EMPTY
+)
 
-fun AuthDateUser.authDateUserToCookie() = Cookie(userMail = email, userPassword = password)
-fun AuthDateUser.authDateNewUserToCookie() = Cookie(userName = userName, userMail = email, userPassword = password)
+val String.Companion.EMPTY
+    get() = ""
+
+fun AuthDateUser.authDateUserToCookie() = Cookie(userName = userName, userMail = email, userPassword = password)

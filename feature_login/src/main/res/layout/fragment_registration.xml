@@ -4,26 +4,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".presentation.RegistrationFragment">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/user_name_text_input_layout"
         style="@style/LoginTextInputLayout"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:hint="@string/userName"
         app:endIconMode="clear_text"
         app:hintEnabled="true"
-        app:layout_constraintHorizontal_bias="0.218"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="220dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:startIconDrawable="@drawable/ic_user_24"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin">
-
+        app:layout_constraintVertical_bias="0.3">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/user_name_edit_text"
             android:layout_width="match_parent"
@@ -36,14 +34,16 @@
         style="@style/LoginTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="@dimen/activity_vertical_margin"
         android:drawablePadding="50dp"
         android:hint="@string/mail"
-        app:endIconMode="clear_text"
         android:layout_marginTop="50dp"
-        app:hintEnabled="true"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:layout_marginVertical="@dimen/activity_vertical_margin"
+        app:endIconMode="clear_text"
+        app:hintEnabled="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_name_text_input_layout"
         app:startIconDrawable="@drawable/ic_baseline_mail_24">
         <com.google.android.material.textfield.TextInputEditText
@@ -55,20 +55,19 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/password_input_layout"
         style="@style/LoginTextInputLayout"
-        app:startIconDrawable="@drawable/ic_password_key_24"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:hintEnabled="true"
         android:hint="@string/password"
-        app:endIconMode="clear_text"
-        app:layout_constraintHorizontal_bias="0.218"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mail_text_layout"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="18dp">
-
+        android:layout_marginTop="18dp"
+        app:hintEnabled="true"
+        app:endIconMode="clear_text"
+        app:startIconDrawable="@drawable/ic_password_key_24"
+        app:layout_constraintHorizontal_bias="0.218"
+        app:layout_constraintTop_toBottomOf="@+id/mail_text_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/password_edit_text"
             android:layout_width="match_parent"
@@ -86,22 +85,22 @@
         android:background="@drawable/oval_button"
         android:paddingLeft="35dp"
         app:icon="@drawable/ic_baseline_arrow_forward_24"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password_input_layout" />
-
+        app:layout_constraintTop_toBottomOf="@+id/password_input_layout"
+        app:layout_constraintVertical_bias="0.013" />
     <TextView
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"
-        android:layout_marginEnd="176dp"
         android:text="@string/back"
         android:textSize="@dimen/reg_link_text_size"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:drawableStartCompat="@drawable/ic_baseline_arrow_back_18">
     </TextView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

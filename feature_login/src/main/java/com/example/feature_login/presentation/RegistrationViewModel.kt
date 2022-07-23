@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class RegistrationViewModel(
     private val loginInteracts: LoginInteracts,
     private val validator: Validator
-) : ViewModel(){
+) : ViewModel() {
 
     fun saveCookieFromPreferences(cookie: Cookie) {
         viewModelScope.launch {
@@ -21,5 +21,9 @@ class RegistrationViewModel(
 
     fun validateFields(user: AuthDateUser): Boolean {
         return validator.validateFields(user)
+    }
+
+    fun passwordDifficult(password: String): Boolean {
+        return validator.checkIsPasswordDifficult(password)
     }
 }

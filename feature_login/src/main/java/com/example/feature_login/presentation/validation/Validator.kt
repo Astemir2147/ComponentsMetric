@@ -12,33 +12,26 @@ class Validator {
      *
      * @param email
      */
-    fun validateEmail(email: String): Boolean = email.matches(emailRegex)
+    private fun validateEmail(email: String): Boolean = email.matches(emailRegex)
 
     /**
      * Метод проверки сложности пароля
      *
      * @param password
      */
-    fun validatePassword(password: String): Boolean = password.contains(upperCase) &&
+    fun checkIsPasswordDifficult(password: String): Boolean = password.contains(upperCase) &&
         password.contains(lowerCase) && password.contains(numbers)
 
     /**
-     * Метод проверки пустоты имени пользователя
+     * Метод проверки пустоты имени пользователя и пароля
      *
      * @param username
      */
-    fun validateUsername(username: String, password: String): Boolean =
-        username.isEmpty() && password.isEmpty()
+    private fun checkValidateDateNotEmpty(username: String, password: String): Boolean =
+        username.isNotEmpty() && password.isNotEmpty()
 
     fun validateFields(user: AuthDateUser): Boolean {
-        var isValid = true
-        if (validateUsername(user.email, user.password)) {
-            isValid = false
-        }
-        if (!validateEmail(user.email)) {
-            isValid = false
-        }
-        return isValid
+        return checkValidateDateNotEmpty(user.email, user.password) && validateEmail(user.email)
     }
 
     companion object {

@@ -17,10 +17,12 @@ class AuthDataSourceImpl(
     override suspend fun getCookie(): Cookie {
         val mail = sharedPreference.getString(userMailKey, String()).orEmpty()
         val password = sharedPreference.getString(userPasswordKey, String()).orEmpty()
-        return Cookie(mail, password)
+        val name = sharedPreference.getString(userName, String()).orEmpty()
+        return Cookie(mail, password, name)
     }
 
     companion object {
+        private const val userName = "userName"
         private const val userMailKey = "userMail"
         private const val userPasswordKey = "userPassword"
     }
