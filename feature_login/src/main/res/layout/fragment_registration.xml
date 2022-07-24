@@ -77,7 +77,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/registration_button"
-        style="@style/LoginButtonStyle2"
+        style="@style/LoginButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

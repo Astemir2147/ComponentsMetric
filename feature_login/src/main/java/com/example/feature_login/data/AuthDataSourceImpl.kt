@@ -9,21 +9,21 @@ class AuthDataSourceImpl(
     override suspend fun saveCookie(cookie: Cookie) {
 
         sharedPreference.edit()
-            .putString(userMailKey, cookie.userMail)
-            .putString(userPasswordKey, cookie.userPassword)
+            .putString(USER_MAIL_KEY, cookie.userMail)
+            .putString(USER_PASSWORD_KEY, cookie.userPassword)
             .apply()
     }
 
     override suspend fun getCookie(): Cookie {
-        val mail = sharedPreference.getString(userMailKey, String()).orEmpty()
-        val password = sharedPreference.getString(userPasswordKey, String()).orEmpty()
-        val name = sharedPreference.getString(userName, String()).orEmpty()
+        val mail = sharedPreference.getString(USER_MAIL_KEY, String()).orEmpty()
+        val password = sharedPreference.getString(USER_PASSWORD_KEY, String()).orEmpty()
+        val name = sharedPreference.getString(USER_NAME, null).orEmpty()
         return Cookie(mail, password, name)
     }
 
     companion object {
-        private const val userName = "userName"
-        private const val userMailKey = "userMail"
-        private const val userPasswordKey = "userPassword"
+        private const val USER_NAME = "userName"
+        private const val USER_MAIL_KEY = "userMail"
+        private const val USER_PASSWORD_KEY = "userPassword"
     }
 }

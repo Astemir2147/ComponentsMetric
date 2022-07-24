@@ -1,9 +1,7 @@
 package com.example.feature_login.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -21,8 +19,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private val binding get() = loginBinding!!
     private val loginViewModel by viewModel<LoginViewModel>()
     private lateinit var auth: FirebaseAuth
-    private var wrongDate: String = ""
-    private var invalidDate : String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,23 +26,17 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         inject()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        loginBinding = FragmentLoginBinding.inflate(inflater, container, false)
-        loginViewModel.loginAttemptResultLiveData.observe(viewLifecycleOwner, ::onSuccess)
-        loginViewModel.checkLogined()
-        wrongDate = getString(R.string.wrongDate)
-        invalidDate = getString(R.string.invalidDate)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loginBinding = FragmentLoginBinding.bind(view)
+        loginViewModel.loginAttemptResultLiveData.observe(viewLifecycleOwner, ::onSuccess)
+        loginViewModel.checkLogined()
         binding.authAsGuest.setOnClickListener { goToComponents() }
+        binding.createAccount.setOnClickListener { goToRegistration() }
         binding.loginButton.setOnClickListener {
             binding.root.hideKeyboard()
             signIn()
         }
-        binding.createAccount.setOnClickListener { goToRegistration() }
     }
 
     private fun goToRegistration() {
@@ -82,11 +72,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     saveCookie(user)
                     goToComponents()
                 } else {
-                    showSnackBar(wrongDate, binding.root)
+                    showSnackBar(getString(R.string.wrongDate),getString(R.string.cancel))
                 }
             }
         } else {
-            showSnackBar(invalidDate, binding.root)
+            showSnackBar(getString(R.string.invalidDate),getString(R.string.cancel))
         }
     }
 }

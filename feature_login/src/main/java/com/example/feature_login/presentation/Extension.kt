@@ -7,13 +7,22 @@ import androidx.fragment.app.Fragment
 import com.example.feature_login.R
 import com.google.android.material.snackbar.Snackbar
 
-fun Fragment.showSnackBar(message: String, binding: View) {
+fun Fragment.showSnackBar(message: String) {
     val cancel = getString(R.string.cancel)
     Snackbar.make(
-        binding,
+        requireView(),
         message,
         Snackbar.LENGTH_SHORT
     ).setAction(cancel) {}.show()
+}
+
+fun Fragment.showSnackBar(message: String, actionText: String, action: (() -> Unit)? = null) {
+    Snackbar.make(
+        requireView(),
+        message,
+        Snackbar.LENGTH_SHORT
+    ).setAction(actionText) { action?.invoke() }
+        .show()
 }
 
 fun View.hideKeyboard() {

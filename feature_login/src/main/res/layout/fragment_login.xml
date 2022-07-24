@@ -53,7 +53,7 @@
 
     <Button
         android:id="@+id/login_button"
-        style="@style/LoginButtonStyle2"
+        style="@style/LoginButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/button_login_horizontal_margin"
