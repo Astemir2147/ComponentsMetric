@@ -34,7 +34,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         binding.authAsGuest.setOnClickListener { goToComponents() }
         binding.createAccount.setOnClickListener { goToRegistration() }
         binding.loginButton.setOnClickListener {
-            binding.root.hideKeyboard()
+            hideKeyboard(binding.root,requireContext())
             signIn()
         }
     }
