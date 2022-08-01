@@ -4,4 +4,5 @@
     <string name="received">Получено</string>
     <string name="installed">Установлено</string>
     <string name="discarded">Списано</string>
+    <string name="network_is_unavailable">Нет подключения к интернету</string>
 </resources>

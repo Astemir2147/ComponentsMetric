@@ -1,20 +1,14 @@
 package com.example.feature_components.presentation
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.example.feature_components.R
+import com.example.feature_components.data.extension.snackBar
 import com.example.feature_components.data.model.Component
 import com.example.feature_components.databinding.FragmentComponentsBinding
 import com.example.feature_components.presentation.adapter.ComponentAdapter
-import com.google.android.material.snackbar.Snackbar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ComponentsFragment : Fragment(R.layout.fragment_components), SearchView.OnQueryTextListener {
@@ -23,29 +17,25 @@ class ComponentsFragment : Fragment(R.layout.fragment_components), SearchView.On
     private lateinit var componentsAdapter: ComponentAdapter
     private val componentsViewModel by viewModel<ComponentsViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         upsertComponents()
-    }
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        componentsBinding = FragmentComponentsBinding.inflate(inflater, container, false)
-
+        componentsBinding = FragmentComponentsBinding.bind(view)
         binding.searchView.setOnQueryTextListener(this)
         setFiltersClickListener()
         setAcceptedComponents()
-        return binding.root
     }
 
     /** Метод, проверяющий наличие подключения к сети, и исходя из этого
      * подгружает данные из firebase в room, или же сообщает об ошибке */
     private fun upsertComponents() {
-
-        if (isOnline()) {
+        if (componentsViewModel.checkNetworkAvailability(requireContext())) {
             componentsViewModel.init()
         }
         else {
-            snackBar("Нет подключения к интернету")
+            val networkIsUnavailableMessage =
+                requireActivity().resources.getString(R.string.network_is_unavailable)
+            snackBar(networkIsUnavailableMessage)
         }
     }
 
@@ -93,37 +83,8 @@ class ComponentsFragment : Fragment(R.layout.fragment_components), SearchView.On
         return true
     }
 
-    private fun snackBar(message : String) {
-        val view = requireActivity().findViewById<View>(android.R.id.content)
-        Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
-            .setTextColor(resources.getColor(R.color.light_green, null)).show()
-    }
-
     private fun searchComponent(query: String) {
         val searchQuery = "%$query%"
         componentsViewModel.searchComponent(searchQuery).observe(viewLifecycleOwner,::setComponents)
-    }
-
-    /**
-     * Функция проверки подключения к интернету (wifi или мобильная связь)
-     */
-
-    fun isOnline(): Boolean {
-        val connectivityManager =
-            requireActivity().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        if (connectivityManager != null) {
-            val capabilities =
-                connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)
-            if (capabilities != null) {
-                if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR)) {
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI)) {
-                    return true
-                } else if (capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)) {
-                    return true
-                }
-            }
-        }
-        return false
     }
 }

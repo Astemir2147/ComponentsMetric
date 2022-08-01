@@ -11,7 +11,7 @@ import com.example.feature_insert_data.data.models.Component
  * @author Asanov Albek 25.06.2022
  */
 
-interface InsertRepository {
+interface LocalComponentsRepository {
 
     /**
      * Получение сегодняшней даты
@@ -32,5 +32,5 @@ interface InsertRepository {
      * Добавляет компонент в room
      * @param component - добавляемый компонент
      */
-    fun addNewComponentToDb(component: Component)
+    fun addNewComponentToDb(component: Component) : Long
 }

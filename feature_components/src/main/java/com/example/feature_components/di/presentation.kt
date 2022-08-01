@@ -5,5 +5,8 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val presentation = module {
-    viewModel{ ComponentsViewModel(get()) }
+    viewModel{ ComponentsViewModel(
+        componentsInteractor =  get(),
+        networkDelegate = get()
+    ) }
 }

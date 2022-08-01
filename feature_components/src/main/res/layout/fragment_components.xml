@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
@@ -12,33 +13,38 @@
         android:layout_margin="@dimen/paddingXS">
 
     </androidx.appcompat.widget.SearchView>
+
     <com.google.android.material.button.MaterialButtonToggleGroup
 
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:backgroundTint="#DFE4D6"
-
         android:id="@+id/toggle_button_group"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:singleSelection="true"
+        android:backgroundTint="@color/toggle_group_color"
+        android:gravity="center"
         app:selectionRequired="true"
-        android:gravity="center">
+        app:singleSelection="true">
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/filter_accept"
             style="@style/Widget.App.Button.OutlinedButton.IconOnly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/received"/>
+            android:text="@string/received" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/filter_installed"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"            android:layout_width="wrap_content"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/installed"/>
+            android:text="@string/installed" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/filter_discarded"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"            android:layout_width="wrap_content"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/discarded"/>
+            android:text="@string/discarded" />
 
     </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -62,15 +68,22 @@
         android:layout_height="match_parent"
         app:shimmer_auto_start="true"
         app:shimmer_duration="1700">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <include layout="@layout/shimmer_layout" />
+
             <include layout="@layout/shimmer_layout2" />
+
             <include layout="@layout/shimmer_layout" />
+
             <include layout="@layout/shimmer_layout2" />
+
             <include layout="@layout/shimmer_layout" />
+
             <include layout="@layout/shimmer_layout2" />
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>

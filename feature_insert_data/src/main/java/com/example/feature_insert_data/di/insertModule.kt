@@ -8,10 +8,10 @@ package com.example.feature_insert_data.di
 
 import com.example.core.database.base.MyDatabase
 import com.example.core.database.dao.ComponentsDao
-import com.example.feature_insert_data.data.repository.FirebaseRepositoryImpl
-import com.example.feature_insert_data.data.repository.InsertRepositoryImpl
-import com.example.feature_insert_data.domain.FirebaseRepository
-import com.example.feature_insert_data.domain.InsertRepository
+import com.example.feature_insert_data.data.repository.RemoteComponentsRepositoryImpl
+import com.example.feature_insert_data.data.repository.LocalComponentsRepositoryImpl
+import com.example.feature_insert_data.domain.RemoteComponentsRepository
+import com.example.feature_insert_data.domain.LocalComponentsRepository
 import com.example.feature_insert_data.domain.interactor.InsertInteractor
 import com.example.feature_insert_data.domain.interactor.InsertInteractorImpl
 import com.example.feature_insert_data.presentation.InsertDataViewModel
@@ -25,13 +25,13 @@ val insertModule = module {
     single { MyDatabase.buildDatabase(androidApplication()) }
     single { get<MyDatabase>().getDao() }
 
-    factory<InsertRepository> {
-        InsertRepositoryImpl(
+    factory<LocalComponentsRepository> {
+        LocalComponentsRepositoryImpl(
             componentsDao = get() as ComponentsDao
         ) }
 
-    factory<FirebaseRepository> {
-        FirebaseRepositoryImpl()
+    factory<RemoteComponentsRepository> {
+        RemoteComponentsRepositoryImpl()
     }
 
     factory<InsertInteractor> { InsertInteractorImpl(

@@ -5,8 +5,8 @@
 package com.example.feature_insert_data.domain.interactor
 
 import com.example.feature_insert_data.data.models.Component
-import com.example.feature_insert_data.domain.FirebaseRepository
-import com.example.feature_insert_data.domain.InsertRepository
+import com.example.feature_insert_data.domain.RemoteComponentsRepository
+import com.example.feature_insert_data.domain.LocalComponentsRepository
 import com.google.firebase.firestore.DocumentReference
 
 /**
@@ -16,13 +16,12 @@ import com.google.firebase.firestore.DocumentReference
  */
 
 class InsertInteractorImpl(
-    private val insertRepository: InsertRepository,
-    private val firebaseRepository: FirebaseRepository
+    private val insertRepository: LocalComponentsRepository,
+    private val firebaseRepository: RemoteComponentsRepository
 ) : InsertInteractor {
 
-    override fun insertNewComponent(component: Component) {
+    override fun insertNewComponent(component: Component) =
         insertRepository.addNewComponentToDb(component)
-    }
 
     override fun getActualCalendarDate() = insertRepository.getActualDate()
 

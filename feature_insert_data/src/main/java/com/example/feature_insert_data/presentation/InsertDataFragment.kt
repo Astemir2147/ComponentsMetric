@@ -2,13 +2,13 @@ package com.example.feature_insert_data.presentation
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.example.feature_insert_data.R
+import com.example.feature_insert_data.data.extantion.snackBar
 import com.example.feature_insert_data.data.models.Component
 import com.example.feature_insert_data.databinding.FragmentInsertDataBinding
 import com.example.feature_insert_data.di.insertInject
@@ -32,28 +32,23 @@ class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
         insertInject()
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        homePageBinding = FragmentInsertDataBinding.inflate(inflater, container, false)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        homePageBinding = FragmentInsertDataBinding.bind(view)
         binding.clickableDateTv.text = insertDataViewModel.getDateToday()
         setClickListeners()
         setAdapters()
         setFocusChanges()
-        return binding.root
     }
 
     private fun setClickListeners() {
-        binding.clickableDateTv.setOnClickListener {
-            openCalendar()
-        }
+        binding.clickableDateTv.setOnClickListener { openCalendar() }
 
         binding.addComponentButton.setOnClickListener {
-
             if (isAnyEmptyField()) {
-                snackBar("Пожалуйста, заполните все поля")
+                val fillAllFieldsMessage =
+                    requireActivity().resources.getString(R.string.please_fill_all_fields)
+               snackBar(fillAllFieldsMessage)
             }
 
             else {
@@ -73,18 +68,11 @@ class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
                 insertDataViewModel.insertNewComponent(insertedComponent)
                 insertDataViewModel.addComponentToFirebase(insertedComponent)
 
-                snackBar("Компонент добавлен")
+                val componentAddedMessage =
+                    requireActivity().resources.getString(R.string.component_added)
+                snackBar(componentAddedMessage)
             }
         }
-    }
-
-    private fun snackBar(message : String) {
-        Snackbar.make(
-            binding.insertFragmentContainer,
-            message,
-            Snackbar.LENGTH_SHORT)
-            .setTextColor(resources.getColor(R.color.light_green, null))
-            .show()
     }
 
     private fun setAdapters() {
@@ -150,14 +138,14 @@ class InsertDataFragment : Fragment(R.layout.fragment_insert_data) {
 
         val dateSetListener = DatePickerDialog.OnDateSetListener {
                 _, year, month, day ->
-            //"${month+1}.$day.$year"
-            // "$day.${month + 1}.$year"
             val date = "$day.${month + 1}.$year"
             if (insertDataViewModel.isCurrentDate(date)) {
                 binding.clickableDateTv.text = date
             }
             else {
-                snackBar("Некорректная дата")
+                val incorrectDateMessage =
+                    requireActivity().resources.getString(R.string.incorrect_date)
+                snackBar(incorrectDateMessage)
             }
         }
 

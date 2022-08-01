@@ -21,4 +21,7 @@
 
     <dimen name="paddingXS">8dp</dimen>
     <dimen name="paddingSM">8dp</dimen>
+
+    <dimen name="outlinedButtonTextSize">15dp</dimen>
+    <dimen name="outlinedButtonStrokeWidth">1dp</dimen>
 </resources>

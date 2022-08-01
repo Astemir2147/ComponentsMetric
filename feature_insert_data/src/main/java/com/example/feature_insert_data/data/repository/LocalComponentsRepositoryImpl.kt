@@ -7,14 +7,13 @@ package com.example.feature_insert_data.data.repository
 import com.example.core.database.dao.ComponentsDao
 import com.example.feature_insert_data.data.extantion.componentToComponentEntity
 import com.example.feature_insert_data.data.models.Component
-import com.example.feature_insert_data.domain.InsertRepository
+import com.example.feature_insert_data.domain.LocalComponentsRepository
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.text.StringBuilder
 
-class InsertRepositoryImpl(
+class LocalComponentsRepositoryImpl(
     private val componentsDao : ComponentsDao,
-    ) : InsertRepository {
+    ) : LocalComponentsRepository {
 
     override fun addNewComponentToDb(component: Component) =
         componentsDao.insertNewComponent(component.componentToComponentEntity())
@@ -36,9 +35,5 @@ class InsertRepositoryImpl(
     override fun getComponentName(
         category: String,
         brand: String,
-        model: String) = StringBuilder().apply {
-            append("$category ")
-            append("$brand ")
-            append("$model ")
-        }.toString()
+        model: String) = "$category $brand $model"
     }

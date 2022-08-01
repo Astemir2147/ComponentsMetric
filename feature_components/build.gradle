@@ -36,32 +36,11 @@ android {
 
 dependencies {
     implementation project(":core")
-//    implementation files('core/libs.jar')
+
     implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
     def lifecycle = "2.4.1"
     implementation("androidx.compose.material3:material3:1.0.0-alpha13")
     implementation("androidx.compose.material3:material3-window-size-class:1.0.0-alpha13")
-    //def room_version = "2.4.2"
-    //Room
-//    implementation "androidx.room:room-runtime:$room_version"
-    //kapt "androidx.room:room-compiler:$room_version"
-
-//    //Koin
-//    implementation "io.insert-koin:koin-android:3.1.5"
-//    implementation 'io.insert-koin:koin-android-ext:3.0.2'
-//    implementation "io.insert-koin:koin-core:3.1.5"
-//    implementation "io.insert-koin:koin-android-compat:3.1.5"
-    //LifeCycle
-
-//    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycle}"
-//    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycle}"
-//    implementation "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycle}"
-//    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
-
-//    implementation 'androidx.core:core-ktx:1.7.0'
-//    implementation 'androidx.appcompat:appcompat:1.4.1'
-//    implementation 'com.google.android.material:material:1.5.0'
-//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

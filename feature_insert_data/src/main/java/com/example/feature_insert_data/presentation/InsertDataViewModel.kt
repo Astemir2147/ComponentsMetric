@@ -38,21 +38,20 @@ class InsertDataViewModel(
     }
 
     fun isCurrentDate(date : String) : Boolean {
-        val dateFormat = SimpleDateFormat("MM.dd.yyyy", Locale.getDefault())
+        val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
 
         val dateToDate = dateFormat.parse(date)
 
-        return validator.isValidDate(dateToDate)
+        return validator.isValidDate(dateToDate!!)
     }
 
     fun getComponentName(category: String, brand: String, model: String) =
         insertInteractor.buildComponentName(category, brand, model)
 
     fun insertNewComponent(component : Component) {
-
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                insertInteractor.insertNewComponent(component)
+                val componentId = insertInteractor.insertNewComponent(component)
             }
         }
     }

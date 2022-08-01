@@ -1,4 +1,4 @@
-package com.example.feature_components.domain
+package com.example.feature_components.domain.utils.servises
 
 import com.example.core.database.entity.ComponentsEntity
 import com.example.feature_components.data.model.Component
@@ -8,12 +8,12 @@ import com.example.feature_components.data.model.Component
  *
  * @author Zashaev Astemir on 2022-04-09
  */
-interface Repository {
+interface LocalComponentsRepository {
     /** Возвращает контракты из бд по статусу [status] */
-    suspend fun getComponentsForStatus(status: String): List<Component>
+    suspend fun getComponentsForStatus(status: String): List<ComponentsEntity>
 
     /** Возвращает контракты из бд */
-    suspend fun getAllComponentFromDb(): List<Component>
+    suspend fun getAllComponentFromDb(): List<ComponentsEntity>
 
     /** Занести данные в бд
      * upd : Asanov Albek 13.06.2022
@@ -21,7 +21,7 @@ interface Repository {
     suspend fun setAllComponentToDb(components : List<ComponentsEntity>)
 
     /** Поиск компонента по ключевому слову [query]*/
-    suspend fun searchComponent(query: String): List<Component>
+    suspend fun searchComponent(query: String): List<ComponentsEntity>
 
     suspend fun deleteComponents(components : List<ComponentsEntity>)
 }

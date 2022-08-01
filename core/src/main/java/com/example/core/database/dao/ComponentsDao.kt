@@ -1,6 +1,10 @@
 package com.example.core.database.dao
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.example.core.database.DatabaseConst
 import com.example.core.database.entity.ComponentsEntity
 
@@ -23,7 +27,7 @@ abstract class ComponentsDao {
 
     /** Добавляет один компонент в базу данных */
     @Insert
-    abstract fun insertNewComponent(component : ComponentsEntity)
+    abstract fun insertNewComponent(component : ComponentsEntity) : Long
 
     /** Удаляет все комплектующие */
     @Delete

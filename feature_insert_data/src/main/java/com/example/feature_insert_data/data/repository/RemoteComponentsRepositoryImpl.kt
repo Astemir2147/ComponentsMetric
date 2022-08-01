@@ -1,10 +1,7 @@
 package com.example.feature_insert_data.data.repository
 
-import android.util.Log
-import com.example.core.database.dao.ComponentsDao
-import com.example.core.database.entity.ComponentsEntity
 import com.example.feature_insert_data.data.models.Component
-import com.example.feature_insert_data.domain.FirebaseRepository
+import com.example.feature_insert_data.domain.RemoteComponentsRepository
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -14,7 +11,7 @@ import com.google.firebase.firestore.FirebaseFirestore
  * Класс для работы с Firestore
  */
 
-class FirebaseRepositoryImpl : FirebaseRepository {
+class RemoteComponentsRepositoryImpl : RemoteComponentsRepository {
 
     companion object {
         const val COMPONENTS_COLLECTION_PATH = "Components"
@@ -38,7 +35,7 @@ class FirebaseRepositoryImpl : FirebaseRepository {
                 "dateOfAccept" to component.dateOfAccept,
                 "statusOfComponent" to component.statusOfComponent
             )
-        ).addOnSuccessListener { }.addOnFailureListener { }
+        )
     }
 
     override fun getFirebaseDoc(docName: String) : DocumentReference =

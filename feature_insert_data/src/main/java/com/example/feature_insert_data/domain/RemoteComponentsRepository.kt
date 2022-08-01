@@ -9,7 +9,7 @@ import com.google.firebase.firestore.DocumentReference
  * @author Asanov Albek 25.06.2022
  */
 
-interface FirebaseRepository {
+interface RemoteComponentsRepository {
     /**
      * Добавляет компонент на сервер Firebase Firestore
      * @param component - добавляемый компонент

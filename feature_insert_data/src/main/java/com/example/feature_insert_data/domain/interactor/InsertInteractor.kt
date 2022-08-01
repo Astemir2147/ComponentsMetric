@@ -34,7 +34,7 @@ interface InsertInteractor {
      * Добавление компонента в room
      * @param component - добавляемый компонент
      */
-    fun insertNewComponent(component: Component)
+    fun insertNewComponent(component: Component) : Long
 
     /**
      * Добавление компонента на сервер
