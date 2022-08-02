@@ -1,20 +1,14 @@
 package com.example.feature_components.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.example.feature_components.R
+import com.example.feature_components.data.extension.snackBar
 import com.example.feature_components.data.model.Component
 import com.example.feature_components.databinding.FragmentComponentsBinding
 import com.example.feature_components.presentation.adapter.ComponentAdapter
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import org.koin.androidx.scope.fragmentScope
-import org.koin.androidx.scope.scopeActivity
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class ComponentsFragment : Fragment(R.layout.fragment_components), SearchView.OnQueryTextListener {
@@ -23,14 +17,26 @@ class ComponentsFragment : Fragment(R.layout.fragment_components), SearchView.On
     private lateinit var componentsAdapter: ComponentAdapter
     private val componentsViewModel by viewModel<ComponentsViewModel>()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        componentsBinding = FragmentComponentsBinding.inflate(inflater, container, false)
-        componentsViewModel.init()
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        upsertComponents()
+        componentsBinding = FragmentComponentsBinding.bind(view)
         binding.searchView.setOnQueryTextListener(this)
         setFiltersClickListener()
         setAcceptedComponents()
-        return binding.root
+    }
+
+    /** Метод, проверяющий наличие подключения к сети, и исходя из этого
+     * подгружает данные из firebase в room, или же сообщает об ошибке */
+    private fun upsertComponents() {
+        if (componentsViewModel.checkNetworkAvailability(requireContext())) {
+            componentsViewModel.init()
+        }
+        else {
+            val networkIsUnavailableMessage =
+                requireActivity().resources.getString(R.string.network_is_unavailable)
+            snackBar(networkIsUnavailableMessage)
+        }
     }
 
     private fun setComponents(list: List<Component>) {
@@ -77,8 +83,8 @@ class ComponentsFragment : Fragment(R.layout.fragment_components), SearchView.On
         return true
     }
 
-    fun searchComponent(query: String) {
+    private fun searchComponent(query: String) {
         val searchQuery = "%$query%"
-        componentsViewModel.searchComponent(searchQuery).observe(viewLifecycleOwner,::setComponents )
+        componentsViewModel.searchComponent(searchQuery).observe(viewLifecycleOwner,::setComponents)
     }
 }

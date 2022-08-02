@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -32,6 +34,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+
     def lifecycle = "2.4.1"
     def room_version = "2.4.2"
     def nav_version = "2.4.2"
@@ -40,10 +43,11 @@ dependencies {
     //Firebase
     api platform('com.google.firebase:firebase-bom:29.2.0')
     api 'com.google.firebase:firebase-auth-ktx:21.0.3'
+    api 'com.google.firebase:firebase-firestore-ktx:24.1.2'
 
     //Room
     api "androidx.room:room-runtime:$room_version"
-    //api "androidx.room:room-compiler:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
 
     //Koin
     api "io.insert-koin:koin-android:3.1.5"
@@ -55,7 +59,7 @@ dependencies {
     api "androidx.lifecycle:lifecycle-livedata-ktx:${lifecycle}"
     api "androidx.lifecycle:lifecycle-viewmodel-ktx:${lifecycle}"
     api "androidx.lifecycle:lifecycle-runtime-ktx:${lifecycle}"
-    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"
+    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1-native-mt'
 
     //navigation ui
     api "androidx.navigation:navigation-fragment-ktx:$nav_version"

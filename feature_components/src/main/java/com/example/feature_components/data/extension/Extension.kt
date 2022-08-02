@@ -1,7 +1,10 @@
 package com.example.feature_components.data.extension
 
+import androidx.fragment.app.Fragment
 import com.example.core.database.entity.ComponentsEntity
+import com.example.feature_components.R
 import com.example.feature_components.data.model.Component
+import com.google.android.material.snackbar.Snackbar
 
 /**
  * Extension function
@@ -16,4 +19,9 @@ fun ComponentsEntity.componentsEntityToComponents() = Component(
 
 /** Данный из presentation в модель для бд */
 fun Component.componentToComponentEntity() =
-    ComponentsEntity(contractId, componentName, personWhitchAccept, countOfItem, dateOfAccept, statusOfComponent)
+    ComponentsEntity(contractId, componentName, personWhichAccept, countOfItem, dateOfAccept, statusOfComponent)
+
+fun Fragment.snackBar(message : String) =
+    Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT)
+        .setTextColor(resources.getColor(R.color.light_green, null))
+        .show()

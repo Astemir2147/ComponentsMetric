@@ -11,4 +11,13 @@
         <item name="android:textColor">@color/gray</item>
     </style>
 
+    <style name="Widget.App.Button.OutlinedButton.IconOnly" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textSize">@dimen/outlinedButtonTextSize</item>
+        <item name="backgroundTint">@android:color/transparent</item>
+        <item name="strokeColor">@color/gray</item>
+        <item name="strokeWidth">@dimen/outlinedButtonStrokeWidth</item>
+        <item name="rippleColor">@color/toggle_group_color</item>
+
+        <item name="android:textColor">@color/colorOnSurface</item>
+    </style>
 </resources>

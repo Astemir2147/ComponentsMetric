@@ -1,4 +1,36 @@
 <resources>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="category_prompt">Категория</string>
+    <string name="brand_prompt">Брэнд</string>
+    <string name="model_prompt">Модель</string>
+    <string name="sender_name_hint">Имя отправителя</string>
+    <string name="default_count_of_inserted_components">1</string>
+    <string name="comment_hint">Комментарий</string>
+    <string name="count">Количество</string>
+    <string name="date_of_send">Дата отправки:</string>
+    <string name="default_date">01.01.2022</string>
+    <string name="add_in_base">Добавить в базу</string>
+    <string name="incorrect_date">Некорректная дата</string>
+    <string name="component_added">Компонент добавлен</string>
+    <string name="please_fill_all_fields">Пожалуйста, заполните все поля</string>
+    <string-array name="categories">
+        <item>Процессоры</item>
+        <item>Видеокарты</item>
+    </string-array>
+    <string-array name="brands">
+        <item>Intel</item>
+        <item>AMD</item>
+        <item>NVIDIA</item>
+        <item>Radeon</item>
+    </string-array>
+    <string-array name="models">
+        <item>Core i5 3570k</item>
+        <item>Core i5 10400</item>
+        <item>Ryzen 5 3600</item>
+        <item>Athlon 3000G</item>
+        <item>GeForce GT 730</item>
+        <item>GeForce GTX 1060</item>
+        <item>RX 560X</item>
+        <item>RX 570</item>
+    </string-array>
 </resources>

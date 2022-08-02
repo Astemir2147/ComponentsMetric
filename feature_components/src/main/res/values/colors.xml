@@ -26,5 +26,6 @@
     <color name="colorSecondaryVariant">#efefef</color>
 
     <color name="light_green">#67AD2C</color>
+    <color name="toggle_group_color">#DFE4D6</color>
 
 </resources>

@@ -27,7 +27,7 @@ class ComponentAdapter(
         with(holder.itemBinding) {
             itemTitle.text = postComments[position].componentName
             dataAcceptOfItem.text = postComments[position].dateOfAccept
-            personWhitchAccept.text = postComments[position].personWhitchAccept
+            personWhitchAccept.text = postComments[position].personWhichAccept
             countOfItem.text = postComments[position].countOfItem
         }
     }

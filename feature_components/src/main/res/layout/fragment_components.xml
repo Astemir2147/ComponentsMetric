@@ -1,53 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/componentsContainer"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <androidx.appcompat.widget.SearchView
         android:id="@+id/search_view"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_margin="@dimen/paddingXS"
-        >
+        android:layout_margin="@dimen/paddingXS">
 
     </androidx.appcompat.widget.SearchView>
-    <LinearLayout
-        android:id="@+id/filters_bar"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_margin="@dimen/paddingXS"
-        android:orientation="horizontal"
-        android:weightSum="3"
-        app:layout_constraintTop_toBottomOf="parent">
 
-        <TextView
+    <com.google.android.material.button.MaterialButtonToggleGroup
+
+        android:id="@+id/toggle_button_group"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/toggle_group_color"
+        android:gravity="center"
+        app:selectionRequired="true"
+        app:singleSelection="true">
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/filter_accept"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_margin="@dimen/paddingSM"
-            android:layout_weight="1"
-            android:gravity="center"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/received" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/filter_installed"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_margin="@dimen/paddingSM"
-            android:layout_weight="1"
-            android:gravity="center"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/installed" />
 
-        <TextView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/filter_discarded"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:layout_margin="@dimen/paddingSM"
-            android:layout_weight="1"
-            android:gravity="center"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/discarded" />
-    </LinearLayout>
+
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPosts"
@@ -68,15 +68,22 @@
         android:layout_height="match_parent"
         app:shimmer_auto_start="true"
         app:shimmer_duration="1700">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <include layout="@layout/shimmer_layout" />
+
             <include layout="@layout/shimmer_layout2" />
+
             <include layout="@layout/shimmer_layout" />
+
             <include layout="@layout/shimmer_layout2" />
+
             <include layout="@layout/shimmer_layout" />
+
             <include layout="@layout/shimmer_layout2" />
         </LinearLayout>
     </com.facebook.shimmer.ShimmerFrameLayout>
