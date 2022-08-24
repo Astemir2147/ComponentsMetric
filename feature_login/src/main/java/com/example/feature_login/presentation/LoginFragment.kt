@@ -1,24 +1,20 @@
 package com.example.feature_login.presentation
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.feature_login.R
-import com.example.feature_login.databinding.FragmentLoginBinding
 import androidx.navigation.fragment.findNavController
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.example.feature_login.data.model.AuthDateUser
 import com.example.feature_login.data.model.authDateUserToCookie
+import com.example.feature_login.R
+import com.example.feature_login.databinding.FragmentLoginBinding
 import com.example.feature_login.di.inject
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
-
     private var loginBinding: FragmentLoginBinding? = null
     private val binding get() = loginBinding!!
     private val loginViewModel by viewModel<LoginViewModel>()
@@ -30,17 +26,21 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         inject()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        loginBinding = FragmentLoginBinding.inflate(inflater, container, false)
-        loginViewModel.loginAttemptResultLiveData.observe(viewLifecycleOwner, ::onSuccess)
-        loginViewModel.checkLogined()
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loginBinding = FragmentLoginBinding.bind(view)
+        loginViewModel.loginAttemptResultLiveData.observe(viewLifecycleOwner, ::onSuccess)
+        loginViewModel.checkLogined()
         binding.authAsGuest.setOnClickListener { goToComponents() }
-        binding.loginButton.setOnClickListener { signIn() }
+        binding.createAccount.setOnClickListener { goToRegistration() }
+        binding.loginButton.setOnClickListener {
+            hideKeyboard()
+            signIn()
+        }
+    }
+
+    private fun goToRegistration() {
+        findNavController().navigate(R.id.action_loginFragment_to_registrationFragment)
     }
 
     private fun getAuthenticateUser(): AuthDateUser {
@@ -55,10 +55,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun onSuccess(success: Boolean) {
         goToComponents()
-    }
-
-    private fun toast(massage: String) {
-        Toast.makeText(context, massage, Toast.LENGTH_SHORT).show()
     }
 
     private fun saveCookie(user: AuthDateUser) {
@@ -76,11 +72,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     saveCookie(user)
                     goToComponents()
                 } else {
-                    toast("Wrong mail or password")
+                    showSnackBar(getString(R.string.wrongDate),getString(R.string.cancel))
                 }
             }
         } else {
-            toast("Invalid mail or password")
+            showSnackBar(getString(R.string.invalidDate),getString(R.string.cancel))
         }
     }
 }

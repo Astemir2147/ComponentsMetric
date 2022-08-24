@@ -15,6 +15,9 @@
             app:destination="@id/navigation_insert_data"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left" />
+        <action
+            android:id="@+id/action_loginFragment_to_registrationFragment"
+            app:destination="@id/registrationFragment" />
     </fragment>
 
     <fragment
@@ -27,5 +30,12 @@
         android:name="com.example.feature_components.presentation.ComponentsFragment"
         android:label="Components"
         tools:layout="@layout/fragment_components" />
-
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.feature_login.presentation.RegistrationFragment"
+        android:label="RegistrationFragment" >
+        <action
+            android:id="@+id/registration_to_components"
+            app:destination="@id/navigation_insert_data" />
+    </fragment>
 </navigation>

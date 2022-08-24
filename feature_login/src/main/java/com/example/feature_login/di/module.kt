@@ -10,6 +10,7 @@ import com.example.feature_login.domain.LoginRepository
 import com.example.feature_login.domain.interactor.LoginInteracts
 import com.example.feature_login.domain.interactor.LoginInteractsImpl
 import com.example.feature_login.presentation.LoginViewModel
+import com.example.feature_login.presentation.RegistrationViewModel
 import com.example.feature_login.presentation.validation.Validator
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -28,6 +29,7 @@ val myModule = module {
     factory<LoginInteracts> { LoginInteractsImpl(get()) }
     single { Validator() }
     viewModel { LoginViewModel(get(), get()) }
+    viewModel { RegistrationViewModel(get(), get()) }
 }
 
 private const val PREFERENCES_FILE_KEY = "com.example.settings_preferences"
