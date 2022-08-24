@@ -21,7 +21,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         registrationBinding = FragmentRegistrationBinding.bind(view)
         binding.back.setOnClickListener { findNavController().popBackStack() }
         binding.registrationButton.setOnClickListener {
-            hideKeyboard(binding.root,requireContext())
+            hideKeyboard()
             registration()
         }
     }
